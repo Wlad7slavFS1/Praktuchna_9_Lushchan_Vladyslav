@@ -1,1 +1,0 @@
-# Praktychna1Mod1
