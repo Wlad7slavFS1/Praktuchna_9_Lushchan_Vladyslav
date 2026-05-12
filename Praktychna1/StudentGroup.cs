@@ -96,5 +96,34 @@ namespace Praktychna1
             string json = File.ReadAllText(filename);
             _students = JsonSerializer.Deserialize<List<Student>>(json) ?? new List<Student>();
         }
+
+        // Пошук за фрагментом імені
+        public string SearchByNameFragment(string fragment)
+        {
+            StringBuilder sb = new StringBuilder($"Результати пошуку для '{fragment}':\n");
+            var found = _students.Where(s => s.FullName.Contains(fragment, StringComparison.OrdinalIgnoreCase));
+            foreach (var s in found) sb.AppendLine(s.FullName);
+            return sb.ToString();
+        }
+
+        // Експорт у CSV
+        public string ExportToCsv()
+        {
+            StringBuilder sb = new StringBuilder("FullName,RecordBookNumber,AverageGrade\n");
+            foreach (var s in _students)
+                sb.AppendLine($"{s.FullName},{s.RecordBookNumber},{s.AverageGrade:F2}");
+            return sb.ToString();
+        }
+
+        // Імпорт з тексту
+        public void ImportStudentsFromText(string rawText)
+        {
+            string[] lines = rawText.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var line in lines)
+            {
+                try { AddStudent(new Student { FullName = line.Trim(), RecordBookNumber = "00000000" }); }
+                catch { /* Пропуск некоректних */ }
+            }
+        }
     }
 }
