@@ -1,6 +1,8 @@
 ﻿using Praktychna1;
 using System;
 using System.Text;
+using System.Linq;
+using System.IO;
 
 class Program
 {
@@ -13,27 +15,38 @@ class Program
 
     static void Main()
     {
-        // Встановлення кодування для коректного виводу кирилиці
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.UTF8;
 
+        // Ініціалізація інструментів ПР №3
+        TextProcessor tp = new TextProcessor();
+        AdvancedLogger advLogger = new AdvancedLogger();
+
+        advLogger.Log("Info", "Програма запущена.");
+
         while (true)
         {
-            // Використання StringBuilder для формування тексту меню (вимога №2)
             StringBuilder menuBuilder = new StringBuilder();
-            menuBuilder.AppendLine("\n--- СИСТЕМА УПРАВЛІННЯ ГРУПОЮ ТА ЛАБОРАТОРІЄЮ (ПР №2) ---");
+            menuBuilder.AppendLine("\n--- РОБОТА З ТЕКСТОМ ТА ЗВІТАМИ (ПР №3) ---");
             menuBuilder.AppendLine("1.  Додати студента");
-            menuBuilder.AppendLine("2.  Вивести список студентів (детально)");
-            menuBuilder.AppendLine("3.  Видалити студента");
-            menuBuilder.AppendLine("4.  Додати оцінку за предмет (Journal)");
-            menuBuilder.AppendLine("5.  Призначити студенту робоче місце (Порт)");
-            menuBuilder.AppendLine("6.  Симулювати виконання лабораторної роботи");
-            menuBuilder.AppendLine("7.  Показати стан матриці портів (16x16)");
-            menuBuilder.AppendLine("8.  Переглянути логи системи (StringBuilder)");
-            menuBuilder.AppendLine("9.  Зберегти дані в JSON");
-            menuBuilder.AppendLine("10. Завантажити дані з JSON");
-            menuBuilder.AppendLine("11. Вивести статистику групи");
-            menuBuilder.AppendLine("12. Знайти відкриті порти");
+            menuBuilder.AppendLine("2.  Видалити студента");
+            menuBuilder.AppendLine("3.  Вивести всіх студентів");
+            menuBuilder.AppendLine("4.  Пошук студента");
+            menuBuilder.AppendLine("5.  Редагування даних студента");
+            menuBuilder.AppendLine("6.  Відмінники / ті, хто має < 6 балів");
+            menuBuilder.AppendLine("7.  Статистика групи");
+            menuBuilder.AppendLine("8.  Зберегти дані (JSON)");
+            menuBuilder.AppendLine("9.  Завантажити дані (JSON)");
+            menuBuilder.AppendLine("10. Пошук за фрагментом ПІБ");
+            menuBuilder.AppendLine("11. Згенерувати повний звіт групи (StringBuilder)");
+            menuBuilder.AppendLine("12. Нормалізувати нотатки всіх студентів");
+            menuBuilder.AppendLine("13. Перевірити паліндроми в нотатках");
+            menuBuilder.AppendLine("14. Експорт групи у CSV");
+            menuBuilder.AppendLine("15. Імпорт студентів з текстового блоку");
+            menuBuilder.AppendLine("16. Переглянути логи системи");
+            menuBuilder.AppendLine("17. Порівняти продуктивність string vs StringBuilder");
+            menuBuilder.AppendLine("18. Обробка тексту (реверс, підрахунок тощо)");
+            menuBuilder.AppendLine("19. Аналіз настрою групи (Варіант 2)");
             menuBuilder.AppendLine("0.  Вийти");
             menuBuilder.Append("Виберіть дію: ");
 
@@ -43,113 +56,99 @@ class Program
 
             switch (choice)
             {
-                case "1": AddStudent(); break;
-                case "2": ShowAllStudents(); break;
-                case "3": RemoveStudent(); break;
-                case "4": AddSubjectGrade(); break;
-                case "5": AssignToPort(); break;
-                case "6": RunLabSimulation(); break;
-                case "7": Console.WriteLine(myGroup.GetPortMap()); break;
-                case "8": Console.WriteLine(myGroup.GetSystemLogs()); break;
-                case "9": myGroup.SaveToFile("university_v2.json"); Console.WriteLine("Збережено!"); break;
-                case "10": myGroup.LoadFromFile("university_v2.json"); Console.WriteLine("Завантажено!"); break;
-                case "11": Console.WriteLine(myGroup.GetGroupStatistics()); break;
-                case "12": FindOpenPorts(); break;
+                case "1": AddStudent(advLogger); break;
+                case "2": RemoveStudent(advLogger); break;
+                case "3": ShowAllStudents(); break;
+                case "4": SearchStudent(); break;
+                case "5": EditStudent(advLogger); break;
+                case "6": ShowPerformanceCategories(); break;
+                case "7": Console.WriteLine(myGroup.GetGroupStatistics()); break;
+                case "8": myGroup.SaveToFile("students.json"); advLogger.Log("Info", "Дані збережено."); break;
+                case "9": myGroup.LoadFromFile("students.json"); advLogger.Log("Info", "Дані завантажено."); break;
+                case "10":
+                    Console.Write("Введіть фрагмент імені: ");
+                    Console.WriteLine(myGroup.SearchByNameFragment(Console.ReadLine()));
+                    break;
+                case "11": Console.WriteLine(tp.BuildGroupReport(myGroup)); break;
+                case "12":
+                    foreach (var s in myGroup.GetAllStudents()) s.Notes = tp.Normalize(s.Notes);
+                    Console.WriteLine("Всі нотатки нормалізовано.");
+                    break;
+                case "13":
+                    foreach (var s in myGroup.GetAllStudents())
+                        if (tp.IsPalindrome(s.Notes)) Console.WriteLine($"Паліндром у {s.FullName}: {s.Notes}");
+                    break;
+                case "14":
+                    File.WriteAllText("export.csv", myGroup.ExportToCsv());
+                    Console.WriteLine("Дані експортовано в export.csv");
+                    break;
+                case "15":
+                    Console.WriteLine("Введіть імена (завершіть порожнім рядком):");
+                    StringBuilder importSb = new StringBuilder();
+                    string line;
+                    while (!string.IsNullOrWhiteSpace(line = Console.ReadLine())) importSb.AppendLine(line);
+                    myGroup.ImportStudentsFromText(importSb.ToString());
+                    break;
+                case "16": Console.WriteLine(advLogger.GetFullLog()); break;
+                case "17":
+                    Console.Write("Кількість ітерацій: ");
+                    if (int.TryParse(Console.ReadLine(), out int iter)) Console.WriteLine(tp.ComparePerformance(iter));
+                    break;
+                case "18":
+                    Console.Write("Введіть текст: ");
+                    string txt = Console.ReadLine();
+                    Console.WriteLine($"Реверс: {tp.Reverse(txt)}, Слів: {tp.CountWords(txt)}");
+                    break;
+                case "19": Console.WriteLine(tp.AnalyzeSentiment(myGroup)); break;
                 default: Console.WriteLine("Невірний вибір."); break;
             }
         }
     }
 
-    // --- Методи реалізації пунктів меню ---
-
-    static void AddStudent()
+    static void AddStudent(AdvancedLogger logger)
     {
         try
         {
-            Console.Write("ПІБ (мін. 5 симв.): ");
-            string name = Console.ReadLine();
-            Console.Write("Номер заліковки (8 цифр): ");
-            string id = Console.ReadLine();
-
-            myGroup.AddStudent(new Student
-            {
-                FullName = name,
-                RecordBookNumber = id,
-                DateOfBirth = new DateTime(2005, 5, 20), // Приклад
-                Status = StudentStatus.Active
-            });
-            Console.WriteLine("Студента додано успішно!");
+            Console.Write("ПІБ (Прізвище Ім'я По батькові): "); string name = Console.ReadLine();
+            Console.Write("№ заліковки (8 цифр): "); string id = Console.ReadLine();
+            Console.Write("Нотатки: "); string n = Console.ReadLine();
+            myGroup.AddStudent(new Student { FullName = name, RecordBookNumber = id, Notes = n, DateOfBirth = DateTime.Now.AddYears(-18) });
+            logger.Log("Info", $"Додано студента: {name}");
         }
-        catch (Exception ex) { Console.WriteLine($"Помилка: {ex.Message}"); }
+        catch (Exception e) { Console.WriteLine($"Помилка: {e.Message}"); }
     }
 
-    static void AssignToPort()
+    static void RemoveStudent(AdvancedLogger logger)
     {
-        try
-        {
-            Console.Write("Номер заліковки: ");
-            string id = Console.ReadLine();
-            Console.Write("Ряд матриці (0-15): ");
-            int row = int.Parse(Console.ReadLine());
-            Console.Write("Стовпець матриці (0-15): ");
-            int col = int.Parse(Console.ReadLine());
-
-            myGroup.AssignStudentToPort(id, row, col);
-            Console.WriteLine("Місце успішно закріплено!");
-        }
-        catch (Exception ex) { Console.WriteLine($"Помилка: {ex.Message}"); }
-    }
-
-    static void RunLabSimulation()
-    {
-        try
-        {
-            Console.Write("Номер заліковки: ");
-            string id = Console.ReadLine();
-            Console.Write("Номер лаби (0-9): ");
-            int labNum = int.Parse(Console.ReadLine());
-            Console.Write("Оцінка (0-100): ");
-            byte grade = byte.Parse(Console.ReadLine());
-
-            myGroup.SimulateLab(id, labNum, grade);
-            Console.WriteLine("Симуляція завершена, дані внесено.");
-        }
-        catch (Exception ex) { Console.WriteLine($"Помилка: {ex.Message}"); }
+        Console.Write("№ заліковки: "); string id = Console.ReadLine();
+        myGroup.RemoveStudent(id);
+        logger.Log("Warning", $"Видалено ID: {id}");
     }
 
     static void ShowAllStudents()
     {
-        var students = myGroup.GetAllStudents();
-        if (!students.Any()) Console.WriteLine("Група порожня.");
-        else foreach (var s in students) s.ShowDetailedInfo();
+        foreach (var s in myGroup.GetAllStudents()) Console.WriteLine(s.GetFormattedInfo(true));
     }
 
-    static void RemoveStudent()
+    static void SearchStudent()
     {
-        Console.Write("Номер заліковки для видалення: ");
-        string id = Console.ReadLine();
-        myGroup.RemoveStudent(id);
-        Console.WriteLine("Запит на видалення оброблено.");
+        Console.Write("Ключове слово: "); string k = Console.ReadLine();
+        foreach (var s in myGroup.GetAllStudents().Where(x => x.ContainsKeyword(k)))
+            Console.WriteLine(s.GetFormattedInfo());
     }
 
-    static void AddSubjectGrade()
+    static void EditStudent(AdvancedLogger logger)
     {
-        Console.Write("Номер заліковки: ");
-        string id = Console.ReadLine();
-        var student = myGroup.GetAllStudents().FirstOrDefault(s => s.RecordBookNumber == id);
-        if (student != null)
-        {
-            Console.Write("Назва предмета: ");
-            string sub = Console.ReadLine();
-            Console.Write("Оцінка: ");
-            if (double.TryParse(Console.ReadLine(), out double g))
-                student.Journal.SetGrade(sub, g);
-        }
+        Console.Write("№ заліковки: "); string id = Console.ReadLine();
+        var s = myGroup.GetAllStudents().FirstOrDefault(x => x.RecordBookNumber == id);
+        if (s != null) { Console.Write("Нові нотатки: "); s.Notes = Console.ReadLine(); logger.Log("Info", $"Оновлено {s.FullName}"); }
     }
 
-    static void FindOpenPorts()
+    static void ShowPerformanceCategories()
     {
-        // Приклад пошуку в двовимірному масиві для високої оцінки
-        Console.WriteLine("Функція пошуку відкритих портів у розробці або реалізована в PortMatrix.");
+        var excellent = myGroup.GetAllStudents().Where(s => s.AverageGrade >= 90);
+        var failing = myGroup.GetAllStudents().Where(s => s.AverageGrade < 60);
+        Console.WriteLine("Відмінники: " + string.Join(", ", excellent.Select(x => x.FullName)));
+        Console.WriteLine("Низький бал: " + string.Join(", ", failing.Select(x => x.FullName)));
     }
 }
