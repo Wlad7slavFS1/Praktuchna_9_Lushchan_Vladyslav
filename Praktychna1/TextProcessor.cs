@@ -9,7 +9,6 @@ namespace Praktychna1
 {
     internal class TextProcessor
     {
-        // 1. Реверс рядка
         public string Reverse(string input)
         {
             if (string.IsNullOrEmpty(input)) return input;
@@ -18,131 +17,83 @@ namespace Praktychna1
             return new string(array);
         }
 
-        // 2. Підрахунок слів
         public int CountWords(string text) =>
             string.IsNullOrWhiteSpace(text) ? 0 : text.Split(new[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries).Length;
 
-        // 3. Підрахунок символів (Вимога №2.3)
-        public int CountCharacters(string text, bool ignoreWhitespace = true)
-        {
-            if (string.IsNullOrEmpty(text)) return 0;
-            return ignoreWhitespace ? text.Replace(" ", "").Length : text.Length;
-        }
+        public string Normalize(string text) =>
+            string.Join(" ", text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)).Trim();
 
-        // 4. Нормалізація: видалення зайвих пробілів та Trim
-        public string Normalize(string text)
-        {
-            if (string.IsNullOrWhiteSpace(text)) return string.Empty;
-            return string.Join(" ", text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)).Trim();
-        }
-
-        // 5. Перевірка на паліндром
         public bool IsPalindrome(string text, bool ignoreCase = true, bool ignoreSpaces = true)
         {
             if (string.IsNullOrEmpty(text)) return false;
-
             string processed = text;
             if (ignoreSpaces) processed = processed.Replace(" ", "");
             if (ignoreCase) processed = processed.ToLower();
-
-            string reversed = Reverse(processed);
+            string reversed = new string(processed.Reverse().ToArray());
             return processed == reversed;
         }
 
-        // 6. Множинна заміна (Вимога №2.6)
-        public string ReplaceMultiple(string text, Dictionary<string, string> replacements)
-        {
-            if (string.IsNullOrEmpty(text) || replacements == null) return text;
-            StringBuilder sb = new StringBuilder(text);
-            foreach (var replacement in replacements)
-            {
-                sb.Replace(replacement.Key, replacement.Value);
-            }
-            return sb.ToString();
-        }
-
-        // 7. Розбиття на речення (Вимога №2.7)
-        public string[] SplitIntoSentences(string text)
-        {
-            if (string.IsNullOrWhiteSpace(text)) return Array.Empty<string>();
-            return text.Split(new[] { '.', '!', '?' }, StringSplitOptions.RemoveEmptyEntries)
-                       .Select(s => s.Trim())
-                       .ToArray();
-        }
-
-        // 8. ГЕНЕРАЦІЯ ПОВНОГО ЗВІТУ ГРУПИ (Вимога №2.8)
+        // ВІДКОРИГОВАНИЙ ЗВІТ: тепер він бачить предмет та оцінку
         public string BuildGroupReport(StudentGroup group)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("==================================================");
-            sb.AppendLine($"ЗВІТ ГРУПИ: {group.GroupName}");
-            sb.AppendLine($"Дата: {DateTime.Now:G}");
-            sb.AppendLine("==================================================");
+            sb.AppendLine("\n" + new string('=', 70));
+            sb.AppendFormat("║ {0,-25} | {1,-15} | {2,-10} | {3,-8} ║\n", "ПІБ Студента", "Заліковка", "Предмет", "Оцінка");
+            sb.AppendLine(new string('=', 70));
 
             var students = group.GetAllStudents();
-            if (students.Count == 0)
+            foreach (var student in students)
             {
-                sb.AppendLine("Група порожня.");
-            }
-            else
-            {
-                foreach (var student in students)
-                {
-                    // Використовуємо StringBuilder-метод студента
-                    sb.AppendLine(student.GetFormattedInfo(true));
-                }
+                // Отримуємо оцінки з Journal
+                var grades = student.Journal.SubjectGrades;
+                var firstEntry = grades.FirstOrDefault();
+
+                string subject = string.IsNullOrEmpty(firstEntry.Key) ? "---" : firstEntry.Key;
+                string score = firstEntry.Value == 0 ? "0" : firstEntry.Value.ToString();
+
+                sb.AppendFormat("║ {0,-25} | {1,-15} | {2,-10} | {3,-8} ║\n",
+                    student.FullName.Length > 25 ? student.FullName.Substring(0, 22) + "..." : student.FullName,
+                    student.RecordBookNumber,
+                    subject,
+                    score);
             }
 
-            sb.AppendLine("==================================================");
+            sb.AppendLine(new string('=', 70));
             sb.AppendLine($"Всього студентів: {students.Count}");
-            sb.AppendLine($"Середній бал групи: {group.AverageGroupGrade:F2}");
             return sb.ToString();
         }
 
-        // 9. Порівняння продуктивності string vs StringBuilder
         public string ComparePerformance(int iterations)
         {
+            if (iterations > 100000) iterations = 100000;
             Stopwatch sw = new Stopwatch();
-
-            // Тест String
             sw.Start();
             string s = "";
             for (int i = 0; i < iterations; i++) s += "test";
             sw.Stop();
-            long stringTime = sw.ElapsedMilliseconds;
+            long t1 = sw.ElapsedMilliseconds;
 
-            // Тест StringBuilder
             sw.Restart();
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < iterations; i++) sb.Append("test");
             sw.Stop();
-            long sbTime = sw.ElapsedMilliseconds;
-
-            return $"Ітерацій: {iterations}\nString: {stringTime} ms\nStringBuilder: {sbTime} ms";
+            return $"String: {t1} ms | StringBuilder: {sw.ElapsedMilliseconds} ms";
         }
 
-        // 10. АНАЛІЗ НАСТРОЮ (Варіант 2)
         public string AnalyzeSentiment(StudentGroup group)
         {
-            int positive = 0, negative = 0;
-            string[] posWords = { "відмінно", "успіх", "задоволений", "добре" };
-            string[] negWords = { "погано", "проблема", "заборгованість", "важко" };
+            int pos = 0, neg = 0;
+            string[] posW = { "відмінно", "успіх", "добре", "супер" };
+            string[] negW = { "погано", "проблема", "важко", "борг" };
 
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("=== РЕЗУЛЬТАТИ АНАЛІЗУ НАСТРОЮ ===");
-
-            foreach (var student in group.GetAllStudents())
+            foreach (var s in group.GetAllStudents())
             {
-                string notes = student.Notes.ToLower();
-                positive += posWords.Count(w => notes.Contains(w));
-                negative += negWords.Count(w => notes.Contains(w));
+                if (string.IsNullOrEmpty(s.Notes)) continue;
+                string n = s.Notes.ToLower();
+                pos += posW.Count(w => n.Contains(w));
+                neg += negW.Count(w => n.Contains(w));
             }
-
-            sb.AppendLine($"Позитивні маркери: {positive}");
-            sb.AppendLine($"Негативні маркери: {negative}");
-            sb.AppendLine(positive >= negative ? "Стан групи: Позитивний" : "Стан групи: Потребує уваги");
-
-            return sb.ToString();
+            return $"\n>>> АНАЛІЗ НАСТРОЮ <<<\nПозитив: {pos} | Негатив: {neg}\nВисновок: {(pos >= neg ? "Все супер! 😊" : "Потрібна допомога! 😟")}";
         }
     }
 }

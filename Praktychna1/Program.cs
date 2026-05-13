@@ -8,7 +8,7 @@ class Program
 {
     static StudentGroup myGroup = new StudentGroup
     {
-        GroupName = "RPZ-21",
+        GroupName = "K-321",
         Specialization = "Software Engineering",
         Course = 3
     };
@@ -27,13 +27,13 @@ class Program
         while (true)
         {
             StringBuilder menuBuilder = new StringBuilder();
-            menuBuilder.AppendLine("\n--- РОБОТА З ТЕКСТОМ ТА ЗВІТАМИ (ПР №3) ---");
+            menuBuilder.AppendLine("\n--- СИСТЕМА УПРАВЛІННЯ ТА МОНІТОРИНГУ ГРУПИ (ПР №3) ---");
             menuBuilder.AppendLine("1.  Додати студента");
             menuBuilder.AppendLine("2.  Видалити студента");
             menuBuilder.AppendLine("3.  Вивести всіх студентів");
             menuBuilder.AppendLine("4.  Пошук студента");
             menuBuilder.AppendLine("5.  Редагування даних студента");
-            menuBuilder.AppendLine("6.  Відмінники / ті, хто має < 6 балів");
+            menuBuilder.AppendLine("6.  Відмінники / ті, хто має >= 90 балів");
             menuBuilder.AppendLine("7.  Статистика групи");
             menuBuilder.AppendLine("8.  Зберегти дані (JSON)");
             menuBuilder.AppendLine("9.  Завантажити дані (JSON)");
@@ -109,13 +109,53 @@ class Program
     {
         try
         {
-            Console.Write("ПІБ (Прізвище Ім'я По батькові): "); string name = Console.ReadLine();
-            Console.Write("№ заліковки (8 цифр): "); string id = Console.ReadLine();
-            Console.Write("Нотатки: "); string n = Console.ReadLine();
-            myGroup.AddStudent(new Student { FullName = name, RecordBookNumber = id, Notes = n, DateOfBirth = DateTime.Now.AddYears(-18) });
-            logger.Log("Info", $"Додано студента: {name}");
+            Console.WriteLine("\n[ Реєстрація нового студента ]");
+            Console.Write("ПІБ (Прізвище Ім'я По батькові): ");
+            string name = Console.ReadLine();
+
+            Console.Write("№ заліковки (8 цифр): ");
+            string id = Console.ReadLine();
+
+            Console.Write("Предмет: ");
+            string subject = Console.ReadLine();
+
+            Console.Write("Оцінка (0-100): ");
+            double grade = double.TryParse(Console.ReadLine(), out double g) ? g : 0;
+
+            // --- НОВИЙ БЛОК: Додавання лабораторних ---
+            Console.Write("Скільки лабораторних додати (0-10)? ");
+            if (int.TryParse(Console.ReadLine(), out int labCount))
+            {
+                // Створюємо об'єкт раніше, щоб заповнити лаби
+                Student newStudent = new Student
+                {
+                    FullName = name,
+                    RecordBookNumber = id,
+                    Notes = "", // Тимчасово порожньо, заповнимо нижче
+                    DateOfBirth = DateTime.Now.AddYears(-18)
+                };
+
+                for (int i = 0; i < labCount && i < 10; i++)
+                {
+                    Console.Write($"Бал за лабу №{i + 1} (0-100): ");
+                    if (byte.TryParse(Console.ReadLine(), out byte labG))
+                    {
+                        newStudent.AddLabGrade(i, labG);
+                    }
+                }
+
+                Console.Write("Короткий відгук (для аналізу настрою): ");
+                newStudent.Notes = Console.ReadLine();
+
+                newStudent.Journal.SetGrade(subject, grade);
+                myGroup.AddStudent(newStudent);
+
+                logger.Log("Info", $"Додано студента: {name}. Лаб: {labCount}. Відгук: {newStudent.Notes}");
+            }
+
+            Console.WriteLine("✅ Дані успішно внесено.");
         }
-        catch (Exception e) { Console.WriteLine($"Помилка: {e.Message}"); }
+        catch (Exception e) { Console.WriteLine($"❌ Помилка: {e.Message}"); }
     }
 
     static void RemoveStudent(AdvancedLogger logger)
@@ -146,9 +186,24 @@ class Program
 
     static void ShowPerformanceCategories()
     {
-        var excellent = myGroup.GetAllStudents().Where(s => s.AverageGrade >= 90);
-        var failing = myGroup.GetAllStudents().Where(s => s.AverageGrade < 60);
-        Console.WriteLine("Відмінники: " + string.Join(", ", excellent.Select(x => x.FullName)));
-        Console.WriteLine("Низький бал: " + string.Join(", ", failing.Select(x => x.FullName)));
+        // Отримуємо списки за допомогою LINQ
+        var excellent = myGroup.GetAllStudents().Where(s => s.AverageGrade >= 90).ToList();
+        var failing = myGroup.GetAllStudents().Where(s => s.AverageGrade < 60).ToList();
+
+        Console.WriteLine("\n--- КАТЕГОРІЇ УСПІШНОСТІ ---");
+
+        // Вивід відмінників
+        Console.Write("Відмінники: ");
+        if (excellent.Any())
+            Console.WriteLine(string.Join(", ", excellent.Select(x => x.FullName)));
+        else
+            Console.WriteLine("відсутні");
+
+        // Вивід студентів з низьким балом
+        Console.Write("Низький бал: ");
+        if (failing.Any())
+            Console.WriteLine(string.Join(", ", failing.Select(x => x.FullName)));
+        else
+            Console.WriteLine("відсутні");
     }
 }

@@ -74,10 +74,6 @@ namespace Praktychna1
             sb.AppendFormat("Кількість студентів: {0}\n", GroupSize);
             sb.AppendFormat("Загальний сер. бал: {0:F2}\n", AverageGroupGrade);
 
-            // Статистика за лабораторними (ПР №2)
-            double labAvg = _students.Any() ? _students.Average(s => s.GetAverageLabGrade()) : 0;
-            sb.AppendFormat("Сер. бал за лабораторні: {0:F2}\n", labAvg);
-
             return sb.ToString();
         }
 

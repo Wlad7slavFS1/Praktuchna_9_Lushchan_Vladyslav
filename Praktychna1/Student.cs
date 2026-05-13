@@ -68,7 +68,12 @@ namespace Praktychna1
 
         public double GetAverageLabGrade()
         {
-            return LabGrades.Length == 0 ? 0 : LabGrades.Select(x => (int)x).Average();
+            // Беремо тільки ті оцінки, які більші за 0
+            var activeGrades = LabGrades.Where(g => g > 0).ToList();
+
+            if (activeGrades.Count == 0) return 0;
+
+            return activeGrades.Select(x => (int)x).Average();
         }
 
         // --- Нові методи ПР №3 ---
@@ -77,22 +82,31 @@ namespace Praktychna1
         public string GetFormattedInfo(bool detailed = false)
         {
             StringBuilder sb = new StringBuilder();
+            int width = 45;
 
-            sb.AppendLine("╔══════════════════════════════════════════════╗");
-            sb.AppendFormat("║ Студент: {0,-35} ║\n", FullName);
-            sb.AppendFormat("║ Заліковка: {0,-33} ║\n", RecordBookNumber);
-            sb.AppendFormat("║ Статус: {0,-36} ║\n", Status);
+            sb.AppendLine("╔" + new string('═', width + 2) + "╗");
+            sb.AppendFormat("║ {0,-" + width + "} ║\n", "Студент: " + FullName);
+            sb.AppendFormat("║ {0,-" + width + "} ║\n", "Заліковка: " + RecordBookNumber);
 
             if (detailed)
             {
-                sb.AppendLine("╟──────────────────────────────────────────────╢");
-                sb.AppendFormat("║ Вік: {0,-39} ║\n", Age);
-                sb.AppendFormat("║ Сер. бал лаб: {0,-30:F2} ║\n", GetAverageLabGrade());
-                sb.AppendFormat("║ Нотатки: {0,-35} ║\n",
-                    Notes.Length > 35 ? Notes.Substring(0, 32) + "..." : Notes);
-            }
-            sb.AppendLine("╚══════════════════════════════════════════════╝");
+                sb.AppendLine("╟" + new string('─', width + 2) + "╢");
+                sb.AppendFormat("║ {0,-" + width + "} ║\n", "Вік: " + Age);
 
+                var firstGrade = Journal.SubjectGrades.FirstOrDefault();
+                string subjectDisplay = string.IsNullOrEmpty(firstGrade.Key) ? "Предмет: ---" : "Предмет: " + firstGrade.Key;
+                string gradeDisplay = firstGrade.Value == 0 ? "Бал: 0" : "Бал: " + firstGrade.Value;
+
+                sb.AppendFormat("║ {0,-" + width + "} ║\n", subjectDisplay);
+                sb.AppendFormat("║ {0,-" + width + "} ║\n", gradeDisplay);
+
+                // --- НОВИЙ РЯДОК: Середній бал лабораторних ---
+                sb.AppendFormat("║ {0,-" + width + "} ║\n", "Сер. бал лаб: " + GetAverageLabGrade().ToString("F2"));
+
+                sb.AppendFormat("║ {0,-" + width + "} ║\n", "Нотатки: " + (string.IsNullOrEmpty(Notes) ? "---" : Notes));
+            }
+
+            sb.AppendLine("╚" + new string('═', width + 2) + "╝");
             return sb.ToString();
         }
 
