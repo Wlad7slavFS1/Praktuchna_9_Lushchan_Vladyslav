@@ -54,8 +54,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 9,
@@ -115,7 +119,7 @@
               "RelativeDocumentMoniker": "Praktychna1\\Student.cs",
               "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Student.cs",
               "RelativeToolTip": "Praktychna1\\Student.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAAAGkAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAA8wEwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-04T08:18:35.096Z",
               "EditorCaption": ""
@@ -184,10 +188,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-12T17:38:46.741Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
             },
             {
               "$type": "Document",

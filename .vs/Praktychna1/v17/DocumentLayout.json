@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\report3.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\report3.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\report2.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\report2.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -39,10 +47,6 @@
       "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\textprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\report2.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\report2.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\report1.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
       "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\report1.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     }
@@ -54,15 +58,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "REPORT3.md",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\REPORT3.md",
+              "RelativeDocumentMoniker": "Praktychna1\\REPORT3.md",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\REPORT3.md",
+              "RelativeToolTip": "Praktychna1\\REPORT3.md",
+              "ViewState": "AgIAADgAAAAAAAAAAAAAAEcAAAB/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-05-13T08:03:36.525Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 1,
               "Title": "REPORT2.md",
               "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\REPORT2.md",
               "RelativeDocumentMoniker": "Praktychna1\\REPORT2.md",
@@ -70,11 +87,12 @@
               "RelativeToolTip": "Praktychna1\\REPORT2.md",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAADWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2026-05-07T13:38:54.354Z"
+              "WhenOpened": "2026-05-07T13:38:54.354Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "PortMatrix.cs",
               "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\PortMatrix.cs",
               "RelativeDocumentMoniker": "Praktychna1\\PortMatrix.cs",
@@ -87,7 +105,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "StudentGroup.cs",
               "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\StudentGroup.cs",
               "RelativeDocumentMoniker": "Praktychna1\\StudentGroup.cs",
@@ -100,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Program.cs",
               "RelativeDocumentMoniker": "Praktychna1\\Program.cs",
@@ -113,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Student.cs",
               "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Student.cs",
               "RelativeDocumentMoniker": "Praktychna1\\Student.cs",
@@ -126,7 +144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GradeJournal.cs",
               "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\GradeJournal.cs",
               "RelativeDocumentMoniker": "Praktychna1\\GradeJournal.cs",
@@ -139,7 +157,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "AdvancedLogger.cs",
               "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\AdvancedLogger.cs",
               "RelativeDocumentMoniker": "Praktychna1\\AdvancedLogger.cs",
@@ -152,7 +170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "PortLogger.cs",
               "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\PortLogger.cs",
               "RelativeDocumentMoniker": "Praktychna1\\PortLogger.cs",
@@ -165,7 +183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Port.cs",
               "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Port.cs",
               "RelativeDocumentMoniker": "Praktychna1\\Port.cs",
@@ -178,7 +196,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "TextProcessor.cs",
               "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\TextProcessor.cs",
               "RelativeDocumentMoniker": "Praktychna1\\TextProcessor.cs",
@@ -191,7 +209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "REPORT1.md",
               "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\REPORT1.md",
               "RelativeDocumentMoniker": "Praktychna1\\REPORT1.md",
