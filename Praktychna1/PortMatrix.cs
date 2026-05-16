@@ -29,7 +29,7 @@ namespace Praktychna1
         {
             if (row < 0 || row >= 16 || col < 0 || col >= 16)
                 throw new IndexOutOfRangeException("Координати за межами матриці 16x16");
-            
+
             _matrix[row, col].Open();
         }
 

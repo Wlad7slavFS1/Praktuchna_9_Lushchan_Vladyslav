@@ -1,5 +1,7 @@
-﻿using System;
+﻿using StudentGroupSystem;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -9,92 +11,212 @@ namespace Praktychna1
 {
     public class StudentGroup
     {
-        // Поля з ПР №1
         public string GroupName { get; set; }
         public string Specialization { get; set; }
         public int Course { get; set; }
 
-        private List<Student> _students = new List<Student>();
+        // ПР №5: Колекція зберігає Person (які успадковують UniversityMember)
+        private List<Person> _members = new List<Person>();
 
-        // Нові компоненти ПР №2
-        private PortMatrix _portMatrix = new PortMatrix(); // Двовимірний масив портів
-        private PortLogger _logger = new PortLogger();    // Логер на основі StringBuilder
+        private PortMatrix _portMatrix = new PortMatrix();
+        private PortLogger _logger = new PortLogger();
 
-        public int GroupSize => _students.Count;
-        public double AverageGroupGrade => _students.Any() ? _students.Average(s => s.AverageGrade) : 0;
+        public int GroupSize => _members.Count;
+        public double AverageGroupGrade => _members.OfType<Student>().Any()
+            ? _members.OfType<Student>().Average(s => s.AverageGrade)
+            : 0;
 
-        // --- Методи управління студентами (ПР №1) ---
-        public void AddStudent(Student s) => _students.Add(s);
+        // --- Методи управління (ПР №5: Адаптація під ТЗ) ---
 
-        public void RemoveStudent(string recordBookNumber) =>
-            _students.RemoveAll(s => s.RecordBookNumber == recordBookNumber);
-
-        public List<Student> GetAllStudents() => _students;
-
-        // --- Інтеграція та порти (ПР №2) ---
-
-        // Прив'язка студента до конкретного порту (робочого місця)
-        public void AssignStudentToPort(string recordBook, int row, int col)
+        /// <summary>
+        /// Додає будь-якого члена університету до групи (Вимога ПР №5)
+        /// </summary>
+        
+        public void AddMember(UniversityMember member)
         {
-            var student = _students.FirstOrDefault(s => s.RecordBookNumber == recordBook);
-            if (student == null) throw new Exception("Студента не знайдено");
+            if (member == null) throw new ArgumentNullException(nameof(member));
 
-            // Відкриваємо порт у матриці
-            _portMatrix.OpenPort(row, col);
-
-            // Логуємо подію (StringBuilder всередині)
-            _logger.Log(row * 16 + col, "Assign", $"Студент {student.FullName} зайняв робоче місце [{row},{col}]");
+            // Оскільки внутрішня колекція побудована на List<Person>, 
+            // виконуємо безпечне приведення типів
+            if (member is Person person)
+            {
+                _members.Add(person);
+            }
         }
 
-        // Симуляція лабораторної роботи
+        // Залишаємо для сумісності зі старим кодом у Program.cs
+        public void AddStudent(Student s) => AddMember(s);
+
+        public void RemoveStudent(string recordBookNumber) =>
+            _members.RemoveAll(m => m is Student s && s.RecordBookNumber == recordBookNumber);
+
+        public List<Person> GetAllMembers() => _members;
+
+        /// <summary>
+        /// ПР №5: Generic-метод для отримання відфільтрованого списку за типом
+        /// </summary>
+        
+        public List<T> GetMembersByType<T>() where T : Person
+        {
+            return _members.OfType<T>().ToList();
+        }
+
+        // Переписуємо старий метод через новий Generic-метод для чистоти коду
+        public List<Student> GetAllStudents() => GetMembersByType<Student>();
+
+        /// <summary>
+        /// ПР №5: Розрахунок загального стипендіального фонду групи
+        /// </summary>
+        
+        public decimal GetTotalScholarship()
+        {
+            // Завдяки поліморфізму викликається CalculateScholarship() конкретного підкласу
+            return _members.Sum(m => m.CalculateScholarship());
+        }
+
+        // ПР №4-5: Оператор + (Поліморфне об'єднання)
+        public static StudentGroup operator +(StudentGroup g1, StudentGroup g2)
+        {
+            var merged = new StudentGroup
+            {
+                GroupName = $"{g1.GroupName}+{g2.GroupName}",
+                Specialization = g1.Specialization,
+                Course = g1.Course
+            };
+            merged._members.AddRange(g1._members);
+            merged._members.AddRange(g2._members);
+            return merged;
+        }
+
+        // --- Бізнес-логіка ---
+
+        public void AssignStudentToPort(string recordBook, int row, int col)
+        {
+            var student = GetMembersByType<Student>().FirstOrDefault(s => s.RecordBookNumber == recordBook);
+            if (student == null) throw new Exception("Студента не знайдено");
+
+            _portMatrix.OpenPort(row, col);
+            _logger.Log(row * 16 + col, "Assign", $"Студент {student.FullName} зайняв місце [{row},{col}]");
+        }
+
         public void SimulateLab(string recordBook, int labNumber, byte grade)
         {
-            var student = _students.FirstOrDefault(s => s.RecordBookNumber == recordBook);
+            var student = GetMembersByType<Student>().FirstOrDefault(s => s.RecordBookNumber == recordBook);
             if (student != null)
             {
-                // Запис в одновимірний масив оцінок студента
                 student.AddLabGrade(labNumber, grade);
-
-                // Запис у лог
                 _logger.Log(-1, "LabWork", $"Студент {student.FullName} виконав лабу №{labNumber} (Оцінка: {grade})");
             }
         }
 
-        // --- Вивід інформації (StringBuilder обов'язково) --- 
-
         public string GetSystemLogs() => _logger.GetFullLog();
-
-        public string GetPortMap() => _portMatrix.GetStatusReport(); // Виклик StringBuilder з PortMatrix
+        public string GetPortMap() => _portMatrix.GetStatusReport();
 
         public string GetGroupStatistics()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("=== СТАТИСТИКА ГРУПИ ===");
+            sb.AppendLine("=== СТАТИСТИКА ГРУПИ (ПОЛІМОРФНА) ===");
             sb.AppendFormat("Група: {0} | Курс: {1}\n", GroupName, Course);
-            sb.AppendFormat("Кількість студентів: {0}\n", GroupSize);
-            sb.AppendFormat("Загальний сер. бал: {0:F2}\n", AverageGroupGrade);
+            sb.AppendFormat("Загальна кількість осіб: {0}\n", GroupSize);
+            sb.AppendFormat("Середній рейтинг студентів: {0:F2}\n", AverageGroupGrade);
 
-            // Статистика за лабораторними (ПР №2)
-            double labAvg = _students.Any() ? _students.Average(s => s.GetAverageLabGrade()) : 0;
+            double labAvg = GetMembersByType<Student>().Any()
+                ? GetMembersByType<Student>().Average(s => s.GetAverageLabGrade())
+                : 0;
             sb.AppendFormat("Сер. бал за лабораторні: {0:F2}\n", labAvg);
 
             return sb.ToString();
         }
 
-        // --- Робота з JSON ---
         public void SaveToFile(string filename)
         {
-            // У ПР №2 також можна зберігати стан логів або матриці за потреби
             var options = new JsonSerializerOptions { WriteIndented = true };
-            string json = JsonSerializer.Serialize(_students, options);
-            File.WriteAllText(filename, json);
+            File.WriteAllText(filename, JsonSerializer.Serialize(_members, options));
         }
 
         public void LoadFromFile(string filename)
         {
             if (!File.Exists(filename)) return;
-            string json = File.ReadAllText(filename);
-            _students = JsonSerializer.Deserialize<List<Student>>(json) ?? new List<Student>();
+            _members = JsonSerializer.Deserialize<List<Person>>(File.ReadAllText(filename)) ?? new List<Person>();
+        }
+
+        public string SearchByNameFragment(string fragment)
+        {
+            var results = _members.Where(m => m.FullName.Contains(fragment, StringComparison.OrdinalIgnoreCase)).ToList();
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Результати пошуку ({fragment}): {results.Count}");
+
+            foreach (var member in results)
+            {
+                sb.AppendLine(member.GetInfo());
+            }
+            return sb.ToString();
+        }
+
+        public string ExportToCsv(string path = null)
+        {
+            StringBuilder csv = new StringBuilder();
+            csv.AppendLine("Type,FullName,RecordBookNumber,AverageGrade,Scholarship,Details");
+
+            foreach (var member in _members)
+            {
+                string type = member.GetType().Name;
+                string scholarship = member.CalculateScholarship().ToString();
+                string details = member.GetInfo().Replace(',', ';');
+
+                if (member is Student s)
+                {
+                    csv.AppendLine($"{type},{s.FullName},{s.RecordBookNumber},{s.AverageGrade:F2},{scholarship},{details}");
+                }
+                else
+                {
+                    csv.AppendLine($"{type},{member.FullName},N/A,N/A,{scholarship},{details}");
+                }
+            }
+
+            if (!string.IsNullOrEmpty(path)) File.WriteAllText(path, csv.ToString());
+            return csv.ToString();
+        }
+
+        public void ImportStudentsFromText(string data)
+        {
+            if (string.IsNullOrWhiteSpace(data)) return;
+            string[] lines = data.Split(new[] { Environment.NewLine, "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string line in lines)
+            {
+                try
+                {
+                    string[] parts = line.Split(';');
+                    if (parts.Length >= 2)
+                    {
+                        var newStudent = new Student(
+                            parts[0].Trim(),
+                            DateTime.Now.AddYears(-18),
+                            "student@college.edu.ua",
+                            parts[1].Trim(),
+                            0,
+                            Student.StudentStatus.Active,
+                            "Імпортовано"
+                        );
+                        _members.Add(newStudent);
+                    }
+                }
+                catch (Exception ex) { Console.WriteLine($"Помилка: {ex.Message}"); }
+            }
+        }
+
+        public Student BestStudent()
+        {
+            var studentsOnly = GetMembersByType<Student>();
+            if (!studentsOnly.Any()) return null;
+
+            Student best = studentsOnly[0];
+            foreach (var current in studentsOnly)
+            {
+                if (current > best) best = current;
+            }
+            return best;
         }
     }
 }
