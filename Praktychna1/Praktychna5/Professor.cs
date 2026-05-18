@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna5
 {
     // Запечатаний клас, бо професор — це найвище звання, далі наслідувати немає сенсу
     public sealed class Professor : Teacher

@@ -1,4 +1,6 @@
-﻿using StudentGroupSystem;
+﻿using Praktychna1.Praktychna2;
+using Praktychna1.Praktychna5;
+using Praktychna1.Praktychna6;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna1
 {
     public class StudentGroup
     {
@@ -31,7 +33,7 @@ namespace Praktychna1
         /// <summary>
         /// Додає будь-якого члена університету до групи (Вимога ПР №5)
         /// </summary>
-        
+
         public void AddMember(UniversityMember member)
         {
             if (member == null) throw new ArgumentNullException(nameof(member));
@@ -55,7 +57,7 @@ namespace Praktychna1
         /// <summary>
         /// ПР №5: Generic-метод для отримання відфільтрованого списку за типом
         /// </summary>
-        
+
         public List<T> GetMembersByType<T>() where T : Person
         {
             return _members.OfType<T>().ToList();
@@ -67,7 +69,7 @@ namespace Praktychna1
         /// <summary>
         /// ПР №5: Розрахунок загального стипендіального фонду групи
         /// </summary>
-        
+
         public decimal GetTotalScholarship()
         {
             // Завдяки поліморфізму викликається CalculateScholarship() конкретного підкласу
@@ -217,6 +219,93 @@ namespace Praktychna1
                 if (current > best) best = current;
             }
             return best;
+        }
+
+        public List<Student> Students { get; set; } = new List<Student>();
+
+        // Розрахувати загальну площу всіх фігур усіх студентів
+        public double GetTotalAreaOfAllShapes()
+        {
+            double totalArea = 0;
+            foreach (var student in Students)
+            {
+                foreach (var shape in student.StudentShapes)
+                {
+                    totalArea += shape.CalculateArea(); // Динамічне зв'язування
+                }
+            }
+            return totalArea;
+        }
+
+        // Намалювати всі фігури (симуляція через інтерфейс)
+        public void DrawAllShapes()
+        {
+            foreach (var student in Students)
+            {
+                foreach (var shape in student.StudentShapes)
+                {
+                    if (shape is IDrawable drawable)
+                    {
+                        drawable.Draw(); // Виклик через інтерфейс
+                    }
+                }
+            }
+        }
+
+        // Змінити розмір всіх фігур
+        public void ResizeAllShapes(double factor)
+        {
+            foreach (var student in Students)
+            {
+                foreach (var shape in student.StudentShapes)
+                {
+                    if (shape is IResizable resizable)
+                    {
+                        resizable.Resize(factor); // Виклик через інтерфейс
+                    }
+                }
+            }
+        }
+
+        public void DemonstrateLateBinding()
+        {
+            Console.WriteLine("--- Демонстрація динамічного зв’язування ---");
+
+            // Створюємо список базового типу
+            List<Shape> testShapes = new List<Shape>
+    {
+        new Circle("Тестове Коло", "Red", 10),
+        new Rectangle("Тестовий Прямокутник", "Blue", 5, 10),
+        new Triangle("Тестовий Трикутник", "Green", 3, 4, 5)
+    };
+
+            foreach (Shape shape in testShapes)
+            {
+                // Програма не знає тип об'єкта до моменту виконання,
+                // але викличе правильний GetDescription()
+                Console.WriteLine($"Тип посилання: Shape | Реальний об'єкт: {shape.GetType().Name}");
+                Console.WriteLine($"Опис: {shape.GetDescription()}");
+                Console.WriteLine($"Площа: {shape.CalculateArea():F2}");
+                Console.WriteLine("------------------------------------------");
+            }
+        }
+
+        // StudentGroup.cs
+        public void ShowAllShapesInfo()
+        {
+            Console.WriteLine("\n--- ІНФОРМАЦІЯ ПРО ВСІ ФІГУРИ ГРУПИ ---");
+            // Використовуємо властивість Students напряму
+            foreach (var student in this.Students)
+            {
+                if (student.StudentShapes != null && student.StudentShapes.Any())
+                {
+                    Console.WriteLine($"Студент: {student.FullName}");
+                    foreach (var shape in student.StudentShapes)
+                    {
+                        Console.WriteLine($"  -> {shape.GetDescription()}");
+                    }
+                }
+            }
         }
     }
 }

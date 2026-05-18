@@ -1,10 +1,12 @@
-﻿using StudentGroupSystem;
+﻿using Praktychna1.Praktychna4;
+using Praktychna1.Praktychna5;
+using Praktychna1.Praktychna6;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna1
 {
     // 1. Додаємо наслідування від Person
     public class Student : Person, ICloneable
@@ -87,9 +89,9 @@ namespace Praktychna1
 
         public object Clone()
         {
-            var clone = (Student)this.MemberwiseClone();
-            clone.LabGrades = (byte[])this.LabGrades.Clone();
-            clone.Grades = new List<GradePoint>(this.Grades);
+            var clone = (Student)MemberwiseClone();
+            clone.LabGrades = (byte[])LabGrades.Clone();
+            clone.Grades = new List<GradePoint>(Grades);
             return clone;
         }
 
@@ -122,13 +124,27 @@ namespace Praktychna1
             // Шукаємо в полях, які тепер належать і Person (FullName), і Student (RecordBookNumber)
             return FullName.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
                    RecordBookNumber.Contains(keyword) ||
-                   (Notes != null && Notes.Contains(keyword, StringComparison.OrdinalIgnoreCase));
+                   Notes != null && Notes.Contains(keyword, StringComparison.OrdinalIgnoreCase);
         }
 
         // ПР №5: Перевизначення методу зарахування для студента
         public override void Enroll()
         {
             Console.WriteLine($"Студента {FullName} успішно зараховано на {CourseProgress} курс.");
+        }
+
+        // Колекція «наукові проєкти» або «діаграми» 
+        // Важливо: ініціалізація має бути ТІЛЬКИ ТУТ
+        public List<Shape> StudentShapes { get; set; } = new List<Shape>();
+
+        public void AddShape(Shape shape)
+        {
+            if (shape != null)
+            {
+                this.StudentShapes.Add(shape);
+                // Додай цей рядок для тесту:
+                Console.WriteLine($"DEBUG: Фігуру додано студенту {FullName}. Тепер фігур: {StudentShapes.Count}");
+            }
         }
     }
 }

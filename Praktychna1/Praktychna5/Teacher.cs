@@ -1,11 +1,10 @@
-﻿using StudentGroupSystem;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna5
 {
     public class Teacher : Person
     {

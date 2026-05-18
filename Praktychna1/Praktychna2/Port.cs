@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna2
 {
     public class Port : ICloneable
     {
@@ -24,8 +24,8 @@ namespace Praktychna1
 
         public object Clone()
         {
-            var clone = (Port)this.MemberwiseClone();
-            Array.Copy(this.DataBuffer, clone.DataBuffer, 64);
+            var clone = (Port)MemberwiseClone();
+            Array.Copy(DataBuffer, clone.DataBuffer, 64);
             return clone;
         }
     }

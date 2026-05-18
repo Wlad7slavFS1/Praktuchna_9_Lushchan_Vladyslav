@@ -1,13 +1,18 @@
 ﻿using Praktychna1;
+using Praktychna1.Praktychna1;
+using Praktychna1.Praktychna4;
+using Praktychna1.Praktychna5;
+using Praktychna1.Praktychna6;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
-using static Praktychna1.Student;
-using Complex = Praktychna1.Complex;
-using Vector = Praktychna1.Vector;
+using static Praktychna1.Praktychna1.Student;
+using Complex = Praktychna1.Praktychna4.Complex;
+using Vector = Praktychna1.Praktychna4.Vector;
+using Teacher = Praktychna1.Praktychna6.Teacher; // Вкажи простір імен саме для ПР №6
 
 class Program
 {
@@ -26,7 +31,7 @@ class Program
         while (true)
         {
             StringBuilder menuBuilder = new StringBuilder();
-            menuBuilder.AppendLine("\n--- СИСТЕМА УПРАВЛІННЯ ГРУПОЮ (ПР №4) ---");
+            menuBuilder.AppendLine("\n--- СИСТЕМА УПРАВЛІННЯ ГРУПОЮ (ПР №6) ---");
             menuBuilder.AppendLine("1.  Додати студента");
             menuBuilder.AppendLine("2.  Видалити студента");
             menuBuilder.AppendLine("3.  Вивести всіх студентів");
@@ -58,6 +63,15 @@ class Program
             menuBuilder.AppendLine("26. Розрахувати та вивести стипендію для всіх (GetTotalScholarship)");
             menuBuilder.AppendLine("27. Показати інформацію про конкретний тип студентів (Generic)");
             menuBuilder.AppendLine("28. Тестування ієрархії та викликів base/override (Метод Enroll)");
+            // --- НОВІ ПУНКТИ ПР №6 (Поліморфізм) ---
+            menuBuilder.AppendLine("29. Розрахувати загальний фонд зарплати (Staff Salary)");
+            menuBuilder.AppendLine("31. Додати нову фігуру (Circle/Rectangle/Triangle)");
+            menuBuilder.AppendLine("32. Вивести всі фігури (Поліморфізм)");
+            menuBuilder.AppendLine("33. Розрахувати загальну площу всіх фігур");
+            menuBuilder.AppendLine("34. Змінити розмір всіх фігур (IResizable)");
+            menuBuilder.AppendLine("35. Намалювати всі фігури (IDrawable)");
+            menuBuilder.AppendLine("36. Інформація через IPrintable");
+            menuBuilder.AppendLine("37. Демонстрація динамічного зв’язування");
             menuBuilder.AppendLine("0.  Вийти");
             menuBuilder.Append("Виберіть дію: ");
 
@@ -129,6 +143,59 @@ class Program
                 case "26": ShowScholarshipReport(); break; // Новий метод
                 case "27": ShowSpecificTypeMembers(); break; // Новий метод
                 case "28": TestHierarchyEnrollment(); break; // Новий метод
+                case "29":
+                    // Створюємо список працівників (можна також зберігати його в класі StudentGroup, якщо це доречно)
+                    List<Employee> universityStaff = new List<Employee>
+    {
+        new Developer("Владислав Лущан", 40000, "C#"),
+        new Teacher("Олександр Петрович", 15000, 80),
+        new Developer("Анна Сидоренко", 35000, "Java"),
+        new Teacher("Марія Іванівна", 12000, 120)
+    };
+
+                    decimal totalFund = 0;
+                    Console.WriteLine("\n--- ВІДОМІСТЬ ПО ЗАРПЛАТІ ---");
+                    foreach (var emp in universityStaff)
+                    {
+                        decimal salary = emp.CalculateSalary();
+                        totalFund += salary;
+                        // Поліморфний виклик GetPrintInfo та CalculateSalary
+                        Console.WriteLine($"{emp.GetPrintInfo()} | До виплати: {salary} грн");
+                    }
+                    Console.WriteLine("------------------------------------------");
+                    Console.WriteLine($"ЗАГАЛЬНИЙ ФОНД: {totalFund} грн");
+                    break;
+                case "31":
+                    AddNewShape();
+                    break;
+                case "32":
+                    // Використовуємо метод з StudentGroup, який викликає GetDescription() кожного об'єкта
+                    myGroup.ShowAllShapesInfo();
+                    break;
+                case "33":
+                    double totalArea = myGroup.GetTotalAreaOfAllShapes();
+                    Console.WriteLine($"Загальна площа всіх фігур у групі: {totalArea:F2}");
+                    break;
+                case "34":
+                    Console.Write("Введіть коефіцієнт масштабування (напр. 1,5): ");
+                    if (double.TryParse(Console.ReadLine(), out double factor))
+                        myGroup.ResizeAllShapes(factor);
+                    else
+                        Console.WriteLine("Невірне число.");
+                    break;
+                case "35":
+                    myGroup.DrawAllShapes();
+                    break;
+                case "36":
+                    // Виклик методу, що працює через інтерфейс IPrintable
+                    myGroup.ShowAllShapesInfo();
+                    break;
+                case "37":
+                    // Виклик методу для демонстрації пізнього зв'язування
+                    myGroup.DemonstrateLateBinding();
+                    break;
+
+                case "0": break;
                 default: Console.WriteLine("Невірно."); break;
             }
         }
@@ -140,23 +207,22 @@ class Program
         {
             Console.Write("ПІБ: "); string name = Console.ReadLine();
             Console.Write("№ заліковки (8 цифр): "); string id = Console.ReadLine();
-            Console.Write("Email: "); string email = Console.ReadLine(); // Додаємо email для Person
+            Console.Write("Email: "); string email = Console.ReadLine();
             Console.Write("Прогрес (0-100): "); int progress = int.Parse(Console.ReadLine());
 
-            // ПР №5: Створення об'єкта через конструктор (ланцюжок Person -> Student)
+            // 1. Створюємо об'єкт (ланцюжок Person -> Student)
             var s = new Student(
-                name,                              // fullName
-                DateTime.Now.AddYears(-18),       // dateOfBirth (за замовчуванням)
-                email,                             // personalEmail
-                id,                                // recordBookNumber
-                0,                                 // averageGrade (початковий бал)
-                StudentStatus.Active               // status
+                name,
+                DateTime.Now.AddYears(-18),
+                email,
+                id,
+                0,
+                StudentStatus.Active
             );
 
-            // Встановлюємо прогрес окремо, якщо це властивість з set
             s.CourseProgress = progress;
 
-            // --- Додавання лабораторних ---
+            // 2. Додавання лабораторних
             Console.Write("Скільки лабораторних ви хочете додати (1-10)? ");
             if (int.TryParse(Console.ReadLine(), out int count) && count >= 1 && count <= 10)
             {
@@ -167,10 +233,6 @@ class Program
                     {
                         s.AddLabGrade(i, grade);
                     }
-                    else
-                    {
-                        Console.WriteLine("Некоректний бал, встановлено 0.");
-                    }
                 }
             }
 
@@ -178,10 +240,13 @@ class Program
             s.Grades.Add(new GradePoint(8.5));
             s.Grades.Add(new GradePoint(9.0));
 
-            // ПР №5: Використовуємо універсальний метод додавання
-            myGroup.AddStudent(s);
+            // 3. ПРЯМА ПРИВ'ЯЗКА (Це те, чого бракувало!)
+            // Додаємо студента в обидва списки, щоб і стара логіка (п. 3), 
+            // і нова поліморфна логіка (п. 32-35) бачили одного й того самого студента.
+            myGroup.Students.Add(s);
+            myGroup.AddMember(s);
 
-            Console.WriteLine("\nСтудента додано успішно!");
+            Console.WriteLine($"\nСтудента {name} додано успішно в групу {myGroup.GroupName}!");
         }
         catch (Exception e)
         {
@@ -435,6 +500,76 @@ class Program
             Console.WriteLine($"Об'єкт класу: {m.GetType().Name}");
             m.Enroll(); // Динамічний поліморфний виклик
             Console.WriteLine(new string('-', 45));
+        }
+    }
+
+    static void AddNewShape()
+    {
+        // Перевіряємо, чи є взагалі студенти в групі
+        var allStudents = myGroup.GetAllStudents();
+        if (!allStudents.Any())
+        {
+            Console.WriteLine("Помилка: Спочатку додайте хоча б одного студента (пункт 1)!");
+            return;
+        }
+
+        Console.WriteLine("Оберіть тип: 1-Коло, 2-Прямокутник, 3-Трикутник, 4-Квадрат");
+        string type = Console.ReadLine();
+        Console.Write("Назва фігури: "); string name = Console.ReadLine();
+        Console.Write("Колір: "); string color = Console.ReadLine();
+
+        Shape shape = null;
+        try
+        {
+            switch (type)
+            {
+                case "1":
+                    Console.Write("Радіус: "); double r = double.Parse(Console.ReadLine());
+                    shape = new Circle(name, color, r);
+                    break;
+                case "2":
+                    Console.Write("Ширина: "); double w = double.Parse(Console.ReadLine());
+                    Console.Write("Висота: "); double h = double.Parse(Console.ReadLine());
+                    shape = new Rectangle(name, color, w, h);
+                    break;
+                case "3":
+                    Console.Write("Сторона A: "); double a = double.Parse(Console.ReadLine());
+                    Console.Write("Сторона B: "); double b = double.Parse(Console.ReadLine());
+                    Console.Write("Сторона C: "); double c = double.Parse(Console.ReadLine());
+                    shape = new Triangle(name, color, a, b, c);
+                    break;
+                case "4":
+                    Console.Write("Сторона: "); double side = double.Parse(Console.ReadLine());
+                    shape = new Square(name, color, side);
+                    break;
+                default:
+                    Console.WriteLine("Невірний вибір типу.");
+                    return;
+            }
+        }
+        catch
+        {
+            Console.WriteLine("Помилка введення даних! Вводьте числа.");
+            return;
+        }
+
+        // Program.cs всередині AddNewShape()
+        if (shape != null)
+        {
+            // Звертаємося прямо до властивості Students об'єкта myGroup
+            if (myGroup.Students != null && myGroup.Students.Count > 0)
+            {
+                // Додаємо першому студенту в ОРИГІНАЛЬНОМУ списку
+                var firstStudent = myGroup.Students[0];
+                firstStudent.AddShape(shape);
+
+                Console.WriteLine($"[СИСТЕМА]: Фігуру '{name}' додано студенту {firstStudent.FullName}.");
+                Console.WriteLine($"[DEBUG]: Тепер у цього студента {firstStudent.StudentShapes.Count} фігур(и).");
+            }
+            else
+            {
+                Console.WriteLine("Помилка: Студенти не знайдені в основному списку групи!");
+            }
         }
     }
 }

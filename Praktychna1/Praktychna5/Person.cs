@@ -1,7 +1,6 @@
-﻿using Praktychna1;
-using System;
+﻿using System;
 
-namespace StudentGroupSystem
+namespace Praktychna1.Praktychna5
 {
     public class Person : UniversityMember
     {

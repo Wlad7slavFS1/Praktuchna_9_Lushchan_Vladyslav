@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Praktychna1.Praktychna1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna5
 {
     public sealed class GraduateStudent : Student // sealed — забороняє подальше наслідування
     {

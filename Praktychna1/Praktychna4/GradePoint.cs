@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna4
 {
     public class GradePoint
     {
@@ -14,7 +14,7 @@ namespace Praktychna1
         public GradePoint(double value)
         {
             // Обмежуємо значення діапазоном 0-10
-            Value = value < 0 ? 0 : (value > 10 ? 10 : value);
+            Value = value < 0 ? 0 : value > 10 ? 10 : value;
         }
 
         // 1. Арифметичні оператори
