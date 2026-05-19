@@ -123,5 +123,17 @@ namespace Praktychna1
                 }
             }
         }
+
+        public void ShowBackupList()
+        {
+            if (!Directory.Exists("Backups")) return;
+
+            string[] files = Directory.GetFiles("Backups");
+            Console.WriteLine("Список доступних резервних копій:");
+            foreach (var file in files)
+            {
+                Console.WriteLine($"- {Path.GetFileName(file)}");
+            }
+        }
     }
 }
