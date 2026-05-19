@@ -88,5 +88,23 @@ namespace Praktychna1
                 }
             }
         }
+
+        public void CreateBackup(string sourcePath)
+        {
+            if (!File.Exists(sourcePath))
+                throw new FileNotFoundException("Початковий файл для бекапу не знайдено.");
+
+            if (!Directory.Exists("Backups"))
+                Directory.CreateDirectory("Backups");
+
+            string fileName = Path.GetFileNameWithoutExtension(sourcePath);
+            string extension = Path.GetExtension(sourcePath);
+            // Додаємо дату і час, щоб копії мали унікальні імена
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+            string destPath = Path.Combine("Backups", $"{fileName}_{timestamp}{extension}");
+
+            File.Copy(sourcePath, destPath);
+            Console.WriteLine($"Резервну копію створено: {destPath}");
+        }
     }
 }
