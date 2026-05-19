@@ -80,6 +80,16 @@ class Program
             menuBuilder.AppendLine("41. Показати історію оцінок через структури");
             menuBuilder.AppendLine("42. Тестування Equals та IEquatable<T> (Point, DateRange)");
             menuBuilder.AppendLine("43. Оптимізація зберігання даних групи");
+            // --- НОВІ ПУНКТИ ПР №8 (Файлова система та серіалізація) ---
+            menuBuilder.AppendLine("44. Зберегти групу у JSON");
+            menuBuilder.AppendLine("45. Завантажити групу з JSON");
+            menuBuilder.AppendLine("46. Експорт оцінок у CSV");
+            menuBuilder.AppendLine("47. Зберегти звіт у текстовий файл (.txt)");
+            menuBuilder.AppendLine("48. Створити резервну копію (Backup)");
+            menuBuilder.AppendLine("49. Переглянути список бекапів");
+            menuBuilder.AppendLine("50. Імпорт студентів з текстового файлу");
+            menuBuilder.AppendLine("51. Очистити старі бекапи (ротація)");
+            menuBuilder.AppendLine("52. Тестування обробки винятків");
             menuBuilder.AppendLine("0.  Вийти");
             menuBuilder.Append("Виберіть дію: ");
 
