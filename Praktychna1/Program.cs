@@ -12,7 +12,8 @@ using System.Text;
 using static Praktychna1.Praktychna1.Student;
 using Complex = Praktychna1.Praktychna4.Complex;
 using Vector = Praktychna1.Praktychna4.Vector;
-using Teacher = Praktychna1.Praktychna6.Teacher; // Вкажи простір імен саме для ПР №6
+using Teacher = Praktychna1.Praktychna6.Teacher;
+using Praktychna1.Praktychna7; // Вкажи простір імен саме для ПР №6
 
 class Program
 {
@@ -72,6 +73,13 @@ class Program
             menuBuilder.AppendLine("35. Намалювати всі фігури (IDrawable)");
             menuBuilder.AppendLine("36. Інформація через IPrintable");
             menuBuilder.AppendLine("37. Демонстрація динамічного зв’язування");
+            // --- НОВІ ПУНКТИ ПР №7 (Структури) ---
+            menuBuilder.AppendLine("38. Продемонструвати роботу зі структурами (Point, GradeRecord)");
+            menuBuilder.AppendLine("39. Порівняти продуктивність struct vs class");
+            menuBuilder.AppendLine("40. Перетворити студента у StudentRecord");
+            menuBuilder.AppendLine("41. Показати історію оцінок через структури");
+            menuBuilder.AppendLine("42. Тестування Equals та IEquatable<T> (Point, DateRange)");
+            menuBuilder.AppendLine("43. Оптимізація зберігання даних групи");
             menuBuilder.AppendLine("0.  Вийти");
             menuBuilder.Append("Виберіть дію: ");
 
@@ -194,7 +202,34 @@ class Program
                     // Виклик методу для демонстрації пізнього зв'язування
                     myGroup.DemonstrateLateBinding();
                     break;
-
+                case "38":
+                    Point seat = new Point(3, 12);
+                    Console.WriteLine($"Демонстрація Point: {seat}");
+                    GradeRecord grade = new GradeRecord("C# OOP", 95.5, DateTime.Now);
+                    Console.WriteLine($"Демонстрація GradeRecord: {grade}");
+                    break;
+                case "39":
+                    PerformanceTest.Run(100000); // Наш клас тестування
+                    break;
+                case "40":
+                    if (myGroup.Students.Any())
+                    {
+                        var record = myGroup.Students[0].ToRecord();
+                        Console.WriteLine($"Зліпок даних (struct): {record}");
+                    }
+                    break;
+                case "41":
+                    if (myGroup.Students.Any()) myGroup.Students[0].ShowGrades();
+                    break;
+                case "42":
+                    DateRange term1 = new DateRange(new DateTime(2023, 9, 1), new DateTime(2023, 12, 31));
+                    DateRange term2 = new DateRange(new DateTime(2024, 2, 1), new DateTime(2024, 6, 30));
+                    Console.WriteLine($"Період 1: {term1}");
+                    Console.WriteLine($"Період 1 > Період 2 (за тривалістю): {term1 > term2}");
+                    break;
+                case "43":
+                    myGroup.OptimizeStorage();
+                    break;
                 case "0": break;
                 default: Console.WriteLine("Невірно."); break;
             }
@@ -569,6 +604,38 @@ class Program
             else
             {
                 Console.WriteLine("Помилка: Студенти не знайдені в основному списку групи!");
+            }
+        }
+
+        static void TestDateRange()
+        {
+            Console.WriteLine("\n--- ТЕСТУВАННЯ ВАРІАНТУ 1: ДІАПАЗОН ДАТ ---");
+            try
+            {
+                // Створюємо два діапазони
+                DateRange semester1 = new DateRange(new DateTime(2023, 9, 1), new DateTime(2023, 12, 31));
+                DateRange winterBreak = new DateRange(new DateTime(2023, 12, 31), new DateTime(2024, 1, 15));
+
+                Console.WriteLine($"Семестр 1: {semester1}");
+                Console.WriteLine($"Зимові канікули: {winterBreak}");
+
+                // Перевірка входження дати
+                DateTime examDate = new DateTime(2023, 12, 25);
+                Console.WriteLine($"Чи входить {examDate:dd.MM.yyyy} у Семестр 1? {semester1.Includes(examDate)}");
+
+                // Порівняння за тривалістю (оператор >)
+                if (semester1 > winterBreak)
+                {
+                    Console.WriteLine("Семестр довший за канікули (порівняння через оператори успішне).");
+                }
+
+                // Перевірка рівності
+                DateRange copyOfSemester = new DateRange(new DateTime(2023, 9, 1), new DateTime(2023, 12, 31));
+                Console.WriteLine($"Копія семестру дорівнює оригіналу? {semester1 == copyOfSemester}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Помилка: {ex.Message}");
             }
         }
     }

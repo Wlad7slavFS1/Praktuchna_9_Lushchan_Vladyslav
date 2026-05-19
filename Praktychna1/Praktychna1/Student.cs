@@ -1,6 +1,7 @@
 ﻿using Praktychna1.Praktychna4;
 using Praktychna1.Praktychna5;
 using Praktychna1.Praktychna6;
+using Praktychna1.Praktychna7;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,9 +36,11 @@ namespace Praktychna1.Praktychna1
             get => _recordBookNumber;
             set
             {
-                if (value?.Length != 8 || !long.TryParse(value, out _))
+                // Додаємо Trim() для видалення випадкових пробілів
+                var val = value?.Trim();
+                if (val?.Length != 8 || !long.TryParse(val, out _))
                     throw new ArgumentException("Номер заліковки має містити рівно 8 цифр");
-                _recordBookNumber = value;
+                _recordBookNumber = val;
             }
         }
 
@@ -144,6 +147,37 @@ namespace Praktychna1.Praktychna1
                 this.StudentShapes.Add(shape);
                 // Додай цей рядок для тесту:
                 Console.WriteLine($"DEBUG: Фігуру додано студенту {FullName}. Тепер фігур: {StudentShapes.Count}");
+            }
+        }
+
+    // Додаємо поле для координат місця (використовуємо структуру Point)
+        public Point LabSeat { get; set; }
+
+        // Додаємо історію оцінок як масив структур (замість списку об'єктів)
+        private GradeRecord[] _gradeHistory = new GradeRecord[10];
+        private int _gradeCount = 0;
+
+        // Метод для конвертації класу в легку структуру StudentRecord
+        public StudentRecord ToRecord()
+        {
+            return new StudentRecord(this.FullName, this.RecordBookNumber, this.CourseProgress);
+        }
+
+        // Метод для додавання оцінки через структуру
+        public void AddGrade(string subject, double score)
+        {
+            if (_gradeCount < _gradeHistory.Length)
+            {
+                _gradeHistory[_gradeCount++] = new GradeRecord(subject, score, DateTime.Now);
+            }
+        }
+
+        public void ShowGrades()
+        {
+            Console.WriteLine($"Історія оцінок для {FullName}:");
+            for (int i = 0; i < _gradeCount; i++)
+            {
+                Console.WriteLine(_gradeHistory[i].ToString());
             }
         }
     }

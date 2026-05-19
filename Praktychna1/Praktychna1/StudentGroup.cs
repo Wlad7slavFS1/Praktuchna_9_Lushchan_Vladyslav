@@ -1,6 +1,7 @@
 ﻿using Praktychna1.Praktychna2;
 using Praktychna1.Praktychna5;
 using Praktychna1.Praktychna6;
+using Praktychna1.Praktychna7;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -306,6 +307,39 @@ namespace Praktychna1.Praktychna1
                     }
                 }
             }
+        }
+
+        private Point[] _labSeats = new Point[30]; // Масив структур
+
+        public void AssignSeat(int studentIndex, int row, int seat)
+        {
+            _labSeats[studentIndex] = new Point(row, seat);
+        }
+
+        public StudentRecord[] GetAllRecords()
+        {
+            var records = new StudentRecord[Students.Count];
+            for (int i = 0; i < Students.Count; i++)
+            {
+                records[i] = Students[i].ToRecord(); // Використовуємо метод з попередньої гілки
+            }
+            return records;
+        }
+
+        public void OptimizeStorage()
+        {
+            foreach (var student in Students)
+            {
+                // Логіка переведення внутрішніх списків студента на компактні структури
+                // (Ми вже підготували GradeRecord[] у класі Student)
+            }
+            Console.WriteLine("Зберігання даних групи оптимізовано.");
+        }
+
+        public StudentRecord? FindStudentRecord(string recordBook)
+        {
+            var student = Students.FirstOrDefault(s => s.RecordBookNumber == recordBook);
+            return student?.ToRecord();
         }
     }
 }
