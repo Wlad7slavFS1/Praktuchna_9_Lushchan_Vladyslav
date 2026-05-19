@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna8
 {
     internal class FileManager
     {

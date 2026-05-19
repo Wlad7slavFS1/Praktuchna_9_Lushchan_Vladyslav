@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna8
 {
     // Власний виняток для помилок формату файлів 
     public class InvalidFileFormatException : Exception

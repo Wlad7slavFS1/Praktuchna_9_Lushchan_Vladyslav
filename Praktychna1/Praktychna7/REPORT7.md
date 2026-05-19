@@ -72,6 +72,6 @@ public readonly struct Point : IEquatable<Point>
 
 Результат роботи: Програма успішно проходить усі тести валідації (зокрема перевірку 8-значного номера заліковки) та демонструє переваги використання типів значень у системі управління групою.
 
-Посилання на на репозиторій: https://github.com/Wlad7slavFS1/Praktuchna_7_Lushchan_Vladyslav
+Посилання на репозиторій: https://github.com/Wlad7slavFS1/Praktuchna_7_Lushchan_Vladyslav
 
 Версія проєкту: v7.0
