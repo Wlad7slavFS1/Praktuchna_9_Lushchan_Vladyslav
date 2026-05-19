@@ -168,5 +168,14 @@ namespace Praktychna1
                 Console.WriteLine($"- {Path.GetFileName(file)}");
             }
         }
+
+        private void ValidatePath(string filePath)
+        {
+            if (string.IsNullOrWhiteSpace(filePath))
+                throw new ArgumentException("Шлях до файлу не може бути порожнім.");
+
+            if (filePath.IndexOfAny(Path.GetInvalidPathChars()) >= 0)
+                throw new InvalidFileFormatException("Шлях містить недопустимі символи.");
+        }
     }
 }
