@@ -95,6 +95,7 @@ class Program
 
             Console.Write(menuBuilder.ToString());
             string choice = Console.ReadLine();
+
             if (choice == "0") break;
 
             switch (choice)
@@ -725,6 +726,26 @@ class Program
             {
                 Console.WriteLine($"Помилка: {ex.Message}");
             }
+        }
+    }
+    public void LogAction(string message)
+    {
+        string logDir = "Logs";
+        string logPath = Path.Combine(logDir, "user_actions.log");
+
+        if (!Directory.Exists(logDir)) Directory.CreateDirectory(logDir);
+
+        // Ротація: якщо файл > 100 КБ, архівуємо його
+        FileInfo logFile = new FileInfo(logPath);
+        if (logFile.Exists && logFile.Length > 100 * 1024)
+        {
+            string archivePath = Path.Combine(logDir, $"log_archive_{DateTime.Now:yyyyMMdd_HHmmss}.log");
+            File.Move(logPath, archivePath);
+        }
+
+        using (StreamWriter sw = File.AppendText(logPath))
+        {
+            sw.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}");
         }
     }
 }
