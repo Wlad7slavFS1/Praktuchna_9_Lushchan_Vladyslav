@@ -9,6 +9,13 @@ namespace Praktychna1
 {
     internal class FileManager
     {
+        private readonly JsonSerializerOptions _options = new JsonSerializerOptions
+        {
+            WriteIndented = true,                         // Читабельний вигляд
+            PropertyNameCaseInsensitive = true,           // Ігнорування регістру при читанні
+            AllowTrailingCommas = true                    // Дозвіл коми в кінці списку
+        };
+
         // Метод для збереження контенту у текстовий файл за допомогою StreamWriter
         public void SaveToText(string content, string filePath)
         {
