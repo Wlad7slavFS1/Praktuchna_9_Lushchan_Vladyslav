@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna1
 {
     public class GradeJournal
     {
