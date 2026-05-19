@@ -28,6 +28,7 @@ class Program
     {
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.UTF8;
+        var fm = new Praktychna1.FileManager();
 
         while (true)
         {
@@ -98,6 +99,7 @@ class Program
 
             if (choice == "0") break;
 
+            fm.LogAction($"Користувач обрав пункт меню: {choice}");
             switch (choice)
             {
                 case "1": AddStudent(); break;
@@ -274,7 +276,6 @@ class Program
                 case "47":
                     try
                     {
-                        var fm = new Praktychna1.FileManager();
                         string report = myGroup.GetGroupStatistics();
                         fm.SaveToText(report, "Reports/StatisticsReport.txt");
                         Console.WriteLine("Текстовий звіт збережено в папку Reports.");
@@ -285,7 +286,6 @@ class Program
                 case "48":
                     try
                     {
-                        var fm = new Praktychna1.FileManager();
                         fm.CreateBackup("students.json");
                     }
                     catch (Exception ex) { Console.WriteLine($"Помилка бекапу: {ex.Message}"); }
@@ -726,26 +726,6 @@ class Program
             {
                 Console.WriteLine($"Помилка: {ex.Message}");
             }
-        }
-    }
-    public void LogAction(string message)
-    {
-        string logDir = "Logs";
-        string logPath = Path.Combine(logDir, "user_actions.log");
-
-        if (!Directory.Exists(logDir)) Directory.CreateDirectory(logDir);
-
-        // Ротація: якщо файл > 100 КБ, архівуємо його
-        FileInfo logFile = new FileInfo(logPath);
-        if (logFile.Exists && logFile.Length > 100 * 1024)
-        {
-            string archivePath = Path.Combine(logDir, $"log_archive_{DateTime.Now:yyyyMMdd_HHmmss}.log");
-            File.Move(logPath, archivePath);
-        }
-
-        using (StreamWriter sw = File.AppendText(logPath))
-        {
-            sw.WriteLine($"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}");
         }
     }
 }
