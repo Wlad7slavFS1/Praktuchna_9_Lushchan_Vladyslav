@@ -106,5 +106,22 @@ namespace Praktychna1
             File.Copy(sourcePath, destPath);
             Console.WriteLine($"Резервну копію створено: {destPath}");
         }
+
+        public void CleanOldBackups(int daysOld)
+        {
+            if (!Directory.Exists("Backups")) return;
+
+            DirectoryInfo dir = new DirectoryInfo("Backups");
+            // Отримуємо всі файли в папці бекапів
+            foreach (FileInfo file in dir.GetFiles())
+            {
+                // Якщо файл створено раніше, ніж daysOld днів тому
+                if (file.CreationTime < DateTime.Now.AddDays(-daysOld))
+                {
+                    file.Delete();
+                    Console.WriteLine($"Видалено старий бекап: {file.Name}");
+                }
+            }
+        }
     }
 }
