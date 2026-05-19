@@ -40,22 +40,41 @@ namespace Praktychna1
 
         // Додай ці методи всередину класу FileManager:
 
+        // 2. Оновлений метод SaveToJson з обробкою винятків
         public void SaveToJson<T>(T data, string filePath)
         {
-            // Налаштування для "красивого" вигляду JSON
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(data, options);
-            File.WriteAllText(filePath, jsonString);
+            try
+            {
+                string jsonString = JsonSerializer.Serialize(data, _options);
+                File.WriteAllText(filePath, jsonString);
+            }
+            catch (JsonException ex)
+            {
+                // Тут ми "перехоплюємо" помилку JSON і кидаємо зрозуміле повідомлення
+                throw new Exception($"Помилка серіалізації у JSON: {ex.Message}");
+            }
+            catch (IOException ex)
+            {
+                throw new Exception($"Помилка доступу до файлу: {ex.Message}");
+            }
         }
 
+        // 3. Оновлений метод LoadFromJson з обробкою винятків
         public T LoadFromJson<T>(string filePath)
         {
             if (!File.Exists(filePath))
-                throw new FileNotFoundException("Файл не знайдено");
+                throw new FileNotFoundException($"Файл {filePath} не знайдено");
 
-            string jsonString = File.ReadAllText(filePath);
-            // Десеріалізація об'єкта назад у тип T 
-            return JsonSerializer.Deserialize<T>(jsonString);
+            try
+            {
+                string jsonString = File.ReadAllText(filePath);
+                return JsonSerializer.Deserialize<T>(jsonString, _options);
+            }
+            catch (JsonException ex)
+            {
+                // Якщо файл JSON "битий" або порожній, спрацює цей блок
+                throw new Exception($"Помилка формату JSON у файлі {filePath}: {ex.Message}");
+            }
         }
     }
 }
