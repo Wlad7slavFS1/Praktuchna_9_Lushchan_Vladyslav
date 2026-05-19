@@ -98,7 +98,6 @@ class Program
             string choice = Console.ReadLine();
 
             if (choice == "0") break;
-
             fm.LogAction($"Користувач обрав пункт меню: {choice}");
             switch (choice)
             {
