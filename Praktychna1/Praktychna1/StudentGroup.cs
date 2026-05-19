@@ -378,5 +378,11 @@ namespace Praktychna1.Praktychna1
 
             fm.ExportToCsv(rows, filePath);
         }
+
+        public void CreateGroupBackup(string currentJsonPath)
+        {
+            var fm = new FileManager();
+            fm.CreateBackup(currentJsonPath);
+        }
     }
 }
