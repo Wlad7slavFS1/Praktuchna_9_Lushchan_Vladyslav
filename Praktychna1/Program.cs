@@ -293,7 +293,18 @@ class Program
                 case "49":
                     new Praktychna1.FileManager().ShowBackupList();
                     break;
-
+                case "50": // Імпорт студентів з текстового файлу (ПРОПУЩЕНИЙ ПУНКТ)
+                    try
+                    {
+                        Console.Write("Введіть шлях до текстового файлу (н-ад: StudentsImport.txt): ");
+                        string importPath = Console.ReadLine();
+                        string content = new Praktychna1.FileManager().ReadFromText(importPath);
+                        myGroup.ImportStudentsFromText(content); // Метод, що розділяє імена по комам або рядкам
+                        fm.LogAction($"Виконано імпорт студентів з файлу: {importPath}");
+                        Console.WriteLine("Імпорт завершено.");
+                    }
+                    catch (Exception ex) { Console.WriteLine($"Помилка імпорту: {ex.Message}"); }
+                    break;
                 case "51":
                     try
                     {
