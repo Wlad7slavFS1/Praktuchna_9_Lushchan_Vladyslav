@@ -76,5 +76,17 @@ namespace Praktychna1
                 throw new Exception($"Помилка формату JSON у файлі {filePath}: {ex.Message}");
             }
         }
+
+        public void ExportToCsv(IEnumerable<string[]> rows, string filePath)
+        {
+            using (StreamWriter writer = new StreamWriter(filePath, false, Encoding.UTF8))
+            {
+                foreach (var row in rows)
+                {
+                    // Об'єднуємо елементи рядка через крапку з комою (стандарт для Excel в Україні)
+                    writer.WriteLine(string.Join(";", row));
+                }
+            }
+        }
     }
 }
