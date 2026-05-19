@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Praktychna1.Praktychna1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -176,6 +177,19 @@ namespace Praktychna1
 
             if (filePath.IndexOfAny(Path.GetInvalidPathChars()) >= 0)
                 throw new InvalidFileFormatException("Шлях містить недопустимі символи.");
+        }
+
+        public void TestExceptionHandling()
+        {
+            Console.WriteLine("Тестування обробки винятків...");
+            try
+            {
+                LoadFromJson<StudentGroup>("non_existent_file.json");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Успішно перехоплено: {ex.Message}");
+            }
         }
     }
 }
