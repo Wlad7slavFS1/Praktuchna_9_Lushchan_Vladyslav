@@ -353,5 +353,30 @@ namespace Praktychna1.Praktychna1
             var fileManager = new FileManager();
             return fileManager.LoadFromJson<StudentGroup>(filePath);
         }
+
+        public void ExportGradesToCsv(string filePath)
+        {
+            if (!Directory.Exists("Reports")) Directory.CreateDirectory("Reports");
+            string fullPath = Path.Combine("Reports", filePath);
+            // ... далі виклик fm.ExportToCsv ...
+            var fm = new FileManager();
+            var rows = new List<string[]>();
+
+            // Додаємо заголовок таблиці
+            rows.Add(new string[] { "Прізвище та ім'я", "Номер заліковки", "Середній бал" });
+
+            // Додаємо дані кожного студента
+            foreach (var student in Students)
+            {
+                rows.Add(new string[]
+                {
+            student.FullName,
+            student.RecordBookNumber,
+            student.AverageGrade.ToString("F2")
+                });
+            }
+
+            fm.ExportToCsv(rows, filePath);
+        }
     }
 }
