@@ -341,5 +341,17 @@ namespace Praktychna1.Praktychna1
             var student = Students.FirstOrDefault(s => s.RecordBookNumber == recordBook);
             return student?.ToRecord();
         }
+
+        public void Save(string filePath)
+        {
+            var fileManager = new FileManager();
+            fileManager.SaveToJson(this, filePath);
+        }
+
+        public static StudentGroup Load(string filePath)
+        {
+            var fileManager = new FileManager();
+            return fileManager.LoadFromJson<StudentGroup>(filePath);
+        }
     }
 }

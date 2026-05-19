@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Praktychna1.Praktychna1
 {
@@ -29,6 +30,8 @@ namespace Praktychna1.Praktychna1
         // тому ми їх тут НЕ дублюємо, вони успадковуються автоматично.
 
         public string LastName => FullName.Split(' ').Last();
+
+        [JsonIgnore]
         public int Age => DateTime.Now.Year - DateOfBirth.Year;
 
         public string RecordBookNumber
@@ -45,6 +48,8 @@ namespace Praktychna1.Praktychna1
         }
 
         public GradeJournal Journal { get; } = new GradeJournal();
+
+        [JsonIgnore]
         public double AverageGrade => Grades.Count > 0 ? Grades.Average(g => (double)g) : 0;
 
         public StudentStatus Status { get; set; }
