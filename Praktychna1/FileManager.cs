@@ -19,22 +19,38 @@ namespace Praktychna1
         // Метод для збереження контенту у текстовий файл за допомогою StreamWriter
         public void SaveToText(string content, string filePath)
         {
-            // Використання using гарантує закриття потоку
-            using (StreamWriter writer = new StreamWriter(filePath))
+            try
             {
-                writer.Write(content);
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.Write(content);
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                throw new Exception("Помилка: Відсутні права доступу для запису файлу.");
+            }
+            catch (IOException ex)
+            {
+                throw new Exception($"Помилка введення-виведення при записі: {ex.Message}");
             }
         }
 
-        // Метод для зчитування з текстового файлу за допомогою StreamReader
         public string ReadFromText(string filePath)
         {
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException($"Файл за шляхом {filePath} не знайдено.");
-
-            using (StreamReader reader = new StreamReader(filePath))
+            try
             {
-                return reader.ReadToEnd();
+                if (!File.Exists(filePath))
+                    throw new FileNotFoundException($"Файл {filePath} не знайдено.");
+
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+            catch (IOException ex)
+            {
+                throw new Exception($"Не вдалося прочитати файл: {ex.Message}");
             }
         }
 
@@ -50,42 +66,59 @@ namespace Praktychna1
             }
             catch (JsonException ex)
             {
-                // Тут ми "перехоплюємо" помилку JSON і кидаємо зрозуміле повідомлення
-                throw new Exception($"Помилка серіалізації у JSON: {ex.Message}");
+                throw new InvalidFileFormatException($"Помилка серіалізації: {ex.Message}");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                throw new Exception("Відмовлено у доступі. Можливо, файл відкритий в іншій програмі.");
             }
             catch (IOException ex)
             {
-                throw new Exception($"Помилка доступу до файлу: {ex.Message}");
+                throw new Exception($"Помилка дискової системи: {ex.Message}");
             }
         }
 
-        // 3. Оновлений метод LoadFromJson з обробкою винятків
         public T LoadFromJson<T>(string filePath)
         {
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException($"Файл {filePath} не знайдено");
-
             try
             {
+                if (!File.Exists(filePath))
+                    throw new FileNotFoundException($"Файл за шляхом {filePath} не існує.");
+
                 string jsonString = File.ReadAllText(filePath);
+
+                // Перевірка на порожній файл перед десеріалізацією
+                if (string.IsNullOrWhiteSpace(jsonString))
+                    throw new InvalidFileFormatException("Файл порожній. Завантаження неможливе.");
+
                 return JsonSerializer.Deserialize<T>(jsonString, _options);
             }
             catch (JsonException ex)
             {
-                // Якщо файл JSON "битий" або порожній, спрацює цей блок
-                throw new Exception($"Помилка формату JSON у файлі {filePath}: {ex.Message}");
+                // Використовуємо твій власний виняток для помилок формату 
+                throw new InvalidFileFormatException($"Некоректний формат JSON: {ex.Message}");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                throw new Exception("Немає дозволу на читання цього файлу.");
             }
         }
 
         public void ExportToCsv(IEnumerable<string[]> rows, string filePath)
         {
-            using (StreamWriter writer = new StreamWriter(filePath, false, Encoding.UTF8))
+            try
             {
-                foreach (var row in rows)
+                using (StreamWriter writer = new StreamWriter(filePath, false, Encoding.UTF8))
                 {
-                    // Об'єднуємо елементи рядка через крапку з комою (стандарт для Excel в Україні)
-                    writer.WriteLine(string.Join(";", row));
+                    foreach (var row in rows)
+                    {
+                        writer.WriteLine(string.Join(";", row));
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Експорт у CSV провалено: {ex.Message}");
             }
         }
 
