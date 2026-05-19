@@ -240,6 +240,73 @@ class Program
                 case "43":
                     myGroup.OptimizeStorage();
                     break;
+                case "44":
+                    try
+                    {
+                        Console.Write("Введіть ім'я файлу для збереження (н-ад: group.json): ");
+                        myGroup.Save(Console.ReadLine()); // Виклик методу, який ми створили раніше
+                    }
+                    catch (Exception ex) { Console.WriteLine($"Помилка: {ex.Message}"); }
+                    break;
+
+                case "45":
+                    try
+                    {
+                        Console.Write("Введіть ім'я файлу для завантаження: ");
+                        string path = Console.ReadLine();
+                        // Оскільки Load статичний, він повертає нову групу
+                        var loadedGroup = StudentGroup.Load(path);
+                        myGroup = loadedGroup;
+                        Console.WriteLine("Дані успішно завантажено.");
+                    }
+                    catch (Exception ex) { Console.WriteLine($"Помилка: {ex.Message}"); }
+                    break;
+
+                case "46":
+                    try
+                    {
+                        myGroup.ExportGradesToCsv("grades_report.csv");
+                    }
+                    catch (Exception ex) { Console.WriteLine($"Помилка експорту: {ex.Message}"); }
+                    break;
+
+                case "47":
+                    try
+                    {
+                        var fm = new Praktychna1.FileManager();
+                        string report = myGroup.GetGroupStatistics();
+                        fm.SaveToText(report, "Reports/StatisticsReport.txt");
+                        Console.WriteLine("Текстовий звіт збережено в папку Reports.");
+                    }
+                    catch (Exception ex) { Console.WriteLine($"Помилка: {ex.Message}"); }
+                    break;
+
+                case "48":
+                    try
+                    {
+                        var fm = new Praktychna1.FileManager();
+                        fm.CreateBackup("students.json");
+                    }
+                    catch (Exception ex) { Console.WriteLine($"Помилка бекапу: {ex.Message}"); }
+                    break;
+
+                case "49":
+                    new Praktychna1.FileManager().ShowBackupList();
+                    break;
+
+                case "51":
+                    try
+                    {
+                        Console.Write("Видалити файли старші за (кількість днів): ");
+                        if (int.TryParse(Console.ReadLine(), out int days))
+                            new Praktychna1.FileManager().CleanOldBackups(days);
+                    }
+                    catch (Exception ex) { Console.WriteLine($"Помилка очищення: {ex.Message}"); }
+                    break;
+
+                case "52":
+                    new Praktychna1.FileManager().TestExceptionHandling();
+                    break;
                 case "0": break;
                 default: Console.WriteLine("Невірно."); break;
             }
