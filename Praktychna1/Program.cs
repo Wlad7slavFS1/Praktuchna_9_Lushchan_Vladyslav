@@ -92,6 +92,13 @@ class Program
             menuBuilder.AppendLine("50. Імпорт студентів з текстового файлу");
             menuBuilder.AppendLine("51. Очистити старі бекапи (ротація)");
             menuBuilder.AppendLine("52. Тестування обробки винятків");
+            // --- НОВІ ПУНКТИ ПР №9 (Делегати та Події) ---
+            menuBuilder.AppendLine("53. Підписатися на сповіщення групи (Events)");
+            menuBuilder.AppendLine("54. Фільтрація студентів через лямбда-вираз (Predicate)");
+            menuBuilder.AppendLine("55. Масова зміна балів для всієї групи (Action)");
+            menuBuilder.AppendLine("56. Згенерувати швидкий звіт (Func)");
+            menuBuilder.AppendLine("57. Продемонструвати багатовіщальність (Multicast Delegates)");
+            menuBuilder.AppendLine("58. Сортування групи за ПІБ (Lambda)");
             menuBuilder.AppendLine("0.  Вийти");
             menuBuilder.Append("Виберіть дію: ");
 
