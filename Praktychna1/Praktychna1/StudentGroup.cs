@@ -63,7 +63,16 @@ namespace Praktychna1.Praktychna1
             StudentAdded?.Invoke(this, new StudentEventArgs(student, "Студента успішно зараховано до групи."));
         }
 
-
+        // 3. Метод для видалення з викликом події
+        public void RemoveStudent(string recordBookNumber)
+        {
+            var student = Students.FirstOrDefault(s => s.RecordBookNumber == recordBookNumber);
+            if (student != null)
+            {
+                Students.Remove(student);
+                StudentRemoved?.Invoke(this, new StudentEventArgs(student, "Студента виключено з групи."));
+            }
+        }
 
         public List<Person> GetAllMembers() => _members;
 
