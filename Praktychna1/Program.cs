@@ -45,7 +45,6 @@ class Program
             menuBuilder.AppendLine("8.  Зберегти дані (JSON)");
             menuBuilder.AppendLine("9.  Завантажити дані (JSON)");
             menuBuilder.AppendLine("10. Пошук за фрагментом ПІБ");
-
             // --- Відновлені пункти (ПР №3) ---
             menuBuilder.AppendLine("11. Згенерувати повний звіт (Statistics + All Students)");
             menuBuilder.AppendLine("12. Нормалізувати нотатки (видалити зайві пробіли)");
@@ -55,7 +54,6 @@ class Program
             menuBuilder.AppendLine("16. Переглянути логи системи");
             menuBuilder.AppendLine("17. Порівняти продуктивність string vs StringBuilder");
             menuBuilder.AppendLine("18. Реверс тексту та підрахунок слів");
-
             // --- Нові пункти (ПР №4)  ---
             menuBuilder.AppendLine("19. Порівняти двох студентів (>, <, ==)");
             menuBuilder.AppendLine("20. Об’єднати дві групи (+)");
@@ -128,7 +126,6 @@ class Program
                     }
                     else Console.WriteLine("Студента не знайдено.");
                     break;
-
                 case "6":
                     Console.Write("№ заліковки для симуляції: "); string idSim = Console.ReadLine();
                     var sSim = myGroup.Students.FirstOrDefault(x => x.RecordBookNumber == idSim);
