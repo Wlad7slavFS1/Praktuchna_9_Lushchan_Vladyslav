@@ -415,5 +415,13 @@ namespace Praktychna1.Praktychna1
         {
             return operation?.Invoke(this) ?? "Операцію не виконано.";
         }
+        public List<Student> FindStudents(Predicate<Student> match)
+        {
+            // Перевірка на null, щоб уникнути помилок
+            if (match == null) return new List<Student>(Students);
+
+            // Використовуємо вбудований метод FindAll класу List<T>
+            return Students.FindAll(match);
+        }
     }
 }
