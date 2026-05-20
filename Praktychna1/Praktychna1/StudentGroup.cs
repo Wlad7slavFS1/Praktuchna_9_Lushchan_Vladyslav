@@ -2,6 +2,7 @@
 using Praktychna1.Praktychna5;
 using Praktychna1.Praktychna6;
 using Praktychna1.Praktychna7;
+using Praktychna1.Praktychna8;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static Praktychna1.Delegates;
 
 namespace Praktychna1.Praktychna1
 {
@@ -17,12 +19,6 @@ namespace Praktychna1.Praktychna1
         public string GroupName { get; set; }
         public string Specialization { get; set; }
         public int Course { get; set; }
-
-        // Делегат для операцій над одним студентом (наприклад, зміна статусу, друк інфо) [cite: 12]
-        public delegate void StudentOperation(Student student);
-
-        // Делегат для операцій над групою (наприклад, генерація специфічного звіту) [cite: 13]
-        public delegate string GroupOperation(StudentGroup group);
 
         // ПР №5: Колекція зберігає Person (які успадковують UniversityMember)
         private List<Person> _members = new List<Person>();
@@ -389,6 +385,21 @@ namespace Praktychna1.Praktychna1
         {
             var fm = new FileManager();
             fm.CreateBackup(currentJsonPath);
+        }
+
+        // Виконати операцію для кожного студента у списку
+        public void ApplyToStudents(StudentOperation operation)
+        {
+            foreach (var student in Students)
+            {
+                operation?.Invoke(student);
+            }
+        }
+
+        // Виконати глобальну операцію над групою
+        public string ExecuteGroupTask(GroupOperation operation)
+        {
+            return operation?.Invoke(this) ?? "Операцію не виконано.";
         }
     }
 }
