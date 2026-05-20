@@ -24,6 +24,28 @@ namespace Praktychna1.Praktychna1
         // Приватні поля залишаємо для валідації
         private string _recordBookNumber;
 
+        // 1. Оголошуємо подію (використовуємо вбудований делегат Action)
+        public event Action<double> AverageGradeChanged;
+
+        // 2. Приватне поле для зберігання значення
+        private double _averageGrade;
+
+        // 3. Повна властивість з логікою виклику події
+        public double AverageGrade
+        {
+            get => _averageGrade;
+            set
+            {
+                // Перевіряємо, чи значення справді змінилося, щоб не спамити подіями
+                if (Math.Abs(_averageGrade - value) > 0.001)
+                {
+                    _averageGrade = value;
+                    // Викликаємо подію (Invoke) — сповіщаємо всіх підписників
+                    AverageGradeChanged?.Invoke(_averageGrade);
+                }
+            }
+        }
+
         public byte[] LabGrades { get; private set; } = new byte[10];
 
         // Властивість FullName, PersonalEmail та Notes тепер у Person, 
@@ -49,14 +71,10 @@ namespace Praktychna1.Praktychna1
 
         public GradeJournal Journal { get; } = new GradeJournal();
 
-        [JsonIgnore]
-        public double AverageGrade => Grades.Count > 0 ? Grades.Average(g => (double)g) : 0;
-
         public StudentStatus Status { get; set; }
         public DateTime EnrollmentDate { get; init; } = DateTime.Now;
 
         public int CourseProgress { get; set; }
-        public List<GradePoint> Grades { get; set; } = new List<GradePoint>();
 
         // 2. ОНОВЛЕНИЙ КОНСТРУКТОР: викликаємо base(...) для Person
         public Student(string fullName, DateTime dateOfBirth, string personalEmail,
@@ -90,6 +108,34 @@ namespace Praktychna1.Praktychna1
             if (labNumber < 0 || labNumber >= LabGrades.Length)
                 throw new IndexOutOfRangeException("Номер лабораторної має бути від 0 до 9");
             LabGrades[labNumber] = grade;
+        }
+
+        // 4. Оновлений список оцінок (автоматично перераховує середній бал)
+        // 1. Приватне поле (зберігає дані, ніхто зовні його не бачить)
+        private List<GradePoint> _grades = new List<GradePoint>();
+
+        // 2. Публічна властивість (через неї всі взаємодіють з оцінками)
+        public List<GradePoint> Grades
+        {
+            get => _grades;
+            set
+            {
+                _grades = value;
+                // ТРИГЕР: Коли ми міняємо список, автоматично перераховується бал і спрацьовує подія
+                UpdateAverageGrade();
+            }
+        }
+
+        // Метод для додавання оцінки (ПР №4-9)
+        public void AddGradePoint(GradePoint grade)
+        {
+            _grades.Add(grade);
+            UpdateAverageGrade(); // Кожна нова оцінка тригерить перерахунок баллу і подію
+        }
+
+        private void UpdateAverageGrade()
+        {
+            AverageGrade = _grades.Count > 0 ? _grades.Average(g => (double)g.Value) : 0;
         }
 
         public bool IsExcellent() => AverageGrade >= 90;

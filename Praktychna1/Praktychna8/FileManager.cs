@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Praktychna1.Praktychna8
 {
-    internal class FileManager
+    public class FileManager
     {
         private readonly JsonSerializerOptions _options = new JsonSerializerOptions
         {

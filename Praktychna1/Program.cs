@@ -3,6 +3,8 @@ using Praktychna1.Praktychna1;
 using Praktychna1.Praktychna4;
 using Praktychna1.Praktychna5;
 using Praktychna1.Praktychna6;
+using Praktychna1.Praktychna7;
+using Praktychna1.Praktychna8;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,9 +13,8 @@ using System.Numerics;
 using System.Text;
 using static Praktychna1.Praktychna1.Student;
 using Complex = Praktychna1.Praktychna4.Complex;
-using Vector = Praktychna1.Praktychna4.Vector;
 using Teacher = Praktychna1.Praktychna6.Teacher;
-using Praktychna1.Praktychna7; // Вкажи простір імен саме для ПР №6
+using Vector = Praktychna1.Praktychna4.Vector;
 
 class Program
 {
@@ -28,7 +29,7 @@ class Program
     {
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.UTF8;
-        var fm = new Praktychna1.FileManager();
+        var fm = new Praktychna1.Praktychna8.FileManager();
 
         while (true)
         {
@@ -291,14 +292,14 @@ class Program
                     break;
 
                 case "49":
-                    new Praktychna1.FileManager().ShowBackupList();
+                    new Praktychna1.Praktychna8.FileManager().ShowBackupList();
                     break;
                 case "50": // Імпорт студентів з текстового файлу (ПРОПУЩЕНИЙ ПУНКТ)
                     try
                     {
                         Console.Write("Введіть шлях до текстового файлу (н-ад: StudentsImport.txt): ");
                         string importPath = Console.ReadLine();
-                        string content = new Praktychna1.FileManager().ReadFromText(importPath);
+                        string content = new Praktychna1.Praktychna8.FileManager().ReadFromText(importPath);
                         myGroup.ImportStudentsFromText(content); // Метод, що розділяє імена по комам або рядкам
                         fm.LogAction($"Виконано імпорт студентів з файлу: {importPath}");
                         Console.WriteLine("Імпорт завершено.");
@@ -310,13 +311,13 @@ class Program
                     {
                         Console.Write("Видалити файли старші за (кількість днів): ");
                         if (int.TryParse(Console.ReadLine(), out int days))
-                            new Praktychna1.FileManager().CleanOldBackups(days);
+                            new Praktychna1.Praktychna8.FileManager().CleanOldBackups(days);
                     }
                     catch (Exception ex) { Console.WriteLine($"Помилка очищення: {ex.Message}"); }
                     break;
 
                 case "52":
-                    new Praktychna1.FileManager().TestExceptionHandling();
+                    new Praktychna1.Praktychna8.FileManager().TestExceptionHandling();
                     break;
                 case "0": break;
                 default: Console.WriteLine("Невірно."); break;
@@ -726,5 +727,14 @@ class Program
                 Console.WriteLine($"Помилка: {ex.Message}");
             }
         }
+
+        // Підписка першого обробника
+        myGroup.StudentAdded += (s, e) => Console.WriteLine($"[LOG]: {e.Message} -> {e.Student.FullName}");
+
+        // Підписка другого обробника (багатовіщальність)
+        myGroup.StudentAdded += (s, e) => {
+            var fm = new FileManager();
+            fm.LogAction($"EVENT: {e.Message} Student: {e.Student.FullName}");
+        };
     }
 }
