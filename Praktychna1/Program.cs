@@ -817,5 +817,49 @@ class Program
             var fm = new FileManager();
             fm.LogAction($"EVENT: {e.Message} Student: {e.Student.FullName}");
         };
+
+        // Використання Predicate (Пункт 54 меню)
+        static void FilterStudents()
+        {
+            Console.WriteLine("\n--- ФІЛЬТРАЦІЯ (Predicate) ---");
+            Console.WriteLine("1. Відмінники (>= 90)");
+            Console.WriteLine("2. Студенти з низьким балом (< 60)");
+            string sub = Console.ReadLine();
+
+            List<Student> results = sub == "1"
+                ? myGroup.FindStudents(s => s.AverageGrade >= 90)
+                : myGroup.FindStudents(s => s.AverageGrade < 60);
+
+            results.ForEach(s => Console.WriteLine(s.GetInfo()));
+        }
+
+        // Використання Action (Пункт 55 меню)
+        static void BulkUpdate()
+        {
+            Console.Write("На скільки балів підвищити оцінку всім? ");
+            if (double.TryParse(Console.ReadLine(), out double bonus))
+            {
+                // Явно кажемо компілятору, що використовуємо Action<Student>
+                // Це прибере помилку "The call is ambiguous"
+                myGroup.ApplyToStudents((Action<Student>)(s => s.AverageGrade += bonus));
+
+                Console.WriteLine($"Бали успішно підвищено на {bonus} для всієї групи.");
+            }
+            else
+            {
+                Console.WriteLine("Помилка: введіть коректне число.");
+            }
+        }
+
+        // Використання Func та подій (Пункт 57 меню)
+        static void DemonstrateEventsAndReports()
+        {
+            // Підписка на подію (Multicast)
+            myGroup.StudentAdded += (s, e) => Console.WriteLine($"[ПОДІЯ]: {e.Message}");
+
+            // Генерація звіту через Func
+            string report = myGroup.GenerateReport(g => $"ЗВІТ: {g.GroupName}, Курс: {g.Course}, Студентів: {g.Students.Count}");
+            Console.WriteLine(report);
+        }
     }
 }
