@@ -18,6 +18,12 @@ namespace Praktychna1.Praktychna1
         public string Specialization { get; set; }
         public int Course { get; set; }
 
+        // Делегат для операцій над одним студентом (наприклад, зміна статусу, друк інфо) [cite: 12]
+        public delegate void StudentOperation(Student student);
+
+        // Делегат для операцій над групою (наприклад, генерація специфічного звіту) [cite: 13]
+        public delegate string GroupOperation(StudentGroup group);
+
         // ПР №5: Колекція зберігає Person (які успадковують UniversityMember)
         private List<Person> _members = new List<Person>();
 
