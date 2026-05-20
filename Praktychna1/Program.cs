@@ -862,4 +862,43 @@ class Program
             Console.WriteLine(report);
         }
     }
+
+    // Делегат, який приймає два числа і повертає результат
+    public delegate double MathOperation(double x, double y);
+
+    static void DynamicCalculator()
+    {
+        Console.WriteLine("\n--- МАТЕМАТИЧНИЙ КАЛЬКУЛЯТОР (Варіант 5) ---");
+        Console.Write("Введіть перше число: ");
+        double a = double.Parse(Console.ReadLine());
+        Console.Write("Введіть друге число: ");
+        double b = double.Parse(Console.ReadLine());
+
+        // Словник, де ключ - символ, а значення - метод (делегат)
+        var operations = new Dictionary<string, MathOperation>
+    {
+        { "+", (x, y) => x + y },
+        { "-", (x, y) => x - y },
+        { "*", (x, y) => x * y },
+        { "/", (x, y) => y != 0 ? x / y : double.NaN },
+        { "^", (x, y) => Math.Pow(x, y) } // Додаткова операція для краси
+    };
+
+        Console.WriteLine("Доступні операції: + - * / ^");
+        Console.Write("Виберіть операцію: ");
+        string op = Console.ReadLine();
+
+        if (operations.ContainsKey(op))
+        {
+            // ВИКЛИК ДЕЛЕГАТА
+            MathOperation selectedOp = operations[op];
+            double result = selectedOp(a, b);
+
+            Console.WriteLine($"Результат: {a} {op} {b} = {result}");
+        }
+        else
+        {
+            Console.WriteLine("Такої операції немає в базі.");
+        }
+    }
 }
