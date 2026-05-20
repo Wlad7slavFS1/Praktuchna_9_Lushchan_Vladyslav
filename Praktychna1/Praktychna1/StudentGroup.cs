@@ -432,5 +432,11 @@ namespace Praktychna1.Praktychna1
                 action(student);
             }
         }
+        public string GenerateReport(Func<StudentGroup, string> reportStrategy)
+        {
+            if (reportStrategy == null) return "Звіт не визначено.";
+
+            return reportStrategy(this);
+        }
     }
 }
