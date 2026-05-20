@@ -22,6 +22,8 @@ namespace Praktychna1.Praktychna1
 
         // ПР №5: Колекція зберігає Person (які успадковують UniversityMember)
         private List<Person> _members = new List<Person>();
+        public event EventHandler<StudentEventArgs> StudentAdded;
+        public event EventHandler<StudentEventArgs> StudentRemoved;
 
         private PortMatrix _portMatrix = new PortMatrix();
         private PortLogger _logger = new PortLogger();
@@ -50,10 +52,22 @@ namespace Praktychna1.Praktychna1
         }
 
         // Залишаємо для сумісності зі старим кодом у Program.cs
-        public void AddStudent(Student s) => AddMember(s);
+        public void AddStudent(Student student)
+        {
+            Students.Add(student);
+            // Виклик події (Invoke)
+            StudentAdded?.Invoke(this, new StudentEventArgs(student, "Нового студента успішно додано!"));
+        }
 
-        public void RemoveStudent(string recordBookNumber) =>
-            _members.RemoveAll(m => m is Student s && s.RecordBookNumber == recordBookNumber);
+        public void RemoveStudent(string fullName)
+        {
+            var student = Students.FirstOrDefault(s => s.FullName == fullName);
+            if (student != null)
+            {
+                Students.Remove(student);
+                StudentRemoved?.Invoke(this, new StudentEventArgs(student, "Студента видалено з групи."));
+            }
+        }
 
         public List<Person> GetAllMembers() => _members;
 
