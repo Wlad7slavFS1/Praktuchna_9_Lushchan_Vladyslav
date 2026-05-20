@@ -39,6 +39,8 @@ class Program
             menuBuilder.AppendLine("2.  Видалити студента");
             menuBuilder.AppendLine("3.  Вивести всіх студентів");
             menuBuilder.AppendLine("4.  Пошук за ключовим словом");
+            menuBuilder.AppendLine("5.  Призначити студенту робоче місце (Point)");
+            menuBuilder.AppendLine("6.  Симулювати виконання лабораторної роботи");
             menuBuilder.AppendLine("7.  Статистика групи");
             menuBuilder.AppendLine("8.  Зберегти дані (JSON)");
             menuBuilder.AppendLine("9.  Завантажити дані (JSON)");
@@ -68,6 +70,7 @@ class Program
             menuBuilder.AppendLine("28. Тестування ієрархії та викликів base/override (Метод Enroll)");
             // --- НОВІ ПУНКТИ ПР №6 (Поліморфізм) ---
             menuBuilder.AppendLine("29. Розрахувати загальний фонд зарплати (Staff Salary)");
+            menuBuilder.AppendLine("30. Додати нового розробника/викладача (Поліморфізм)");
             menuBuilder.AppendLine("31. Додати нову фігуру (Circle/Rectangle/Triangle)");
             menuBuilder.AppendLine("32. Вивести всі фігури (Поліморфізм)");
             menuBuilder.AppendLine("33. Розрахувати загальну площу всіх фігур");
@@ -113,6 +116,32 @@ class Program
                 case "2": RemoveStudent(); break;
                 case "3": ShowAllStudents(); break;
                 case "4": SearchStudent(); break;
+                case "5":
+                    Console.Write("Введіть № заліковки: "); string idSeat = Console.ReadLine();
+                    var sSeat = myGroup.Students.FirstOrDefault(x => x.RecordBookNumber == idSeat);
+                    if (sSeat != null)
+                    {
+                        Console.Write("Введіть X (ряд): "); int x = int.Parse(Console.ReadLine());
+                        Console.Write("Введіть Y (місце): "); int y = int.Parse(Console.ReadLine());
+                        sSeat.LabSeat = new Point(x, y); // Використовуємо твою структуру Point
+                        Console.WriteLine($"Місце ({x}, {y}) закріплено за {sSeat.FullName}");
+                    }
+                    else Console.WriteLine("Студента не знайдено.");
+                    break;
+
+                case "6":
+                    Console.Write("№ заліковки для симуляції: "); string idSim = Console.ReadLine();
+                    var sSim = myGroup.Students.FirstOrDefault(x => x.RecordBookNumber == idSim);
+                    if (sSim != null)
+                    {
+                        Random rnd = new Random();
+                        byte labNum = (byte)rnd.Next(0, 10);
+                        byte labGrade = (byte)rnd.Next(60, 101);
+                        sSim.AddLabGrade(labNum, labGrade); // Твій метод з ПР №2
+                        Console.WriteLine($"Симуляція: {sSim.FullName} виконав лаб №{labNum} на {labGrade} балів!");
+                    }
+                    else Console.WriteLine("Студента не знайдено.");
+                    break;
                 case "7": Console.WriteLine(myGroup.GetGroupStatistics()); break;
                 case "8": myGroup.SaveToFile("students.json"); Console.WriteLine("Збережено."); break;
                 case "9": myGroup.LoadFromFile("students.json"); Console.WriteLine("Завантажено."); break;
@@ -192,6 +221,55 @@ class Program
                     }
                     Console.WriteLine("------------------------------------------");
                     Console.WriteLine($"ЗАГАЛЬНИЙ ФОНД: {totalFund} грн");
+                    break;
+                case "30":
+                    Console.WriteLine("\n--- ДОДАВАННЯ ПЕРСОНАЛУ ---");
+                    Console.WriteLine("1. Розробник (Developer)");
+                    Console.WriteLine("2. Викладач (Teacher)");
+                    Console.Write("Ваш вибір: ");
+                    string staffType = Console.ReadLine();
+
+                    Console.Write("Введіть ПІБ: ");
+                    string sName = Console.ReadLine();
+
+                    if (staffType == "1")
+                    {
+                        Console.Write("Мова програмування: ");
+                        string lang = Console.ReadLine();
+                        Console.Write("Зарплата: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal devSalary))
+                        {
+                            // Створюємо об'єкт строго за твоїм конструктором
+                            var dev = new Developer(sName, devSalary, lang);
+
+                            // Якщо AddMember не приймає його напряму через ієрархію, 
+                            // ми додаємо його як object або через dynamic, щоб обійти перевірку типів
+                            myGroup.AddMember((dynamic)dev);
+
+                            Console.WriteLine($"\n[СИСТЕМА]: Розробника {sName} додано.");
+                        }
+                    }
+                    else if (staffType == "2")
+                    {
+                        Console.Write("Кафедра: ");
+                        string dept = Console.ReadLine();
+                        Console.Write("Ставка: ");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal tSalary))
+                        {
+                            // Використовуємо конструктор Teacher(string, DateTime, string, string, decimal)
+                            // передаючи параметри вручну, щоб не міняти клас
+                            var teacher = new Praktychna1.Praktychna5.Teacher(
+                                            sName,
+                                            DateTime.Now.AddYears(-30),
+                                            "staff@zpfk.edu.ua",
+                                            dept,
+                                            tSalary
+                                        );
+
+                            myGroup.AddMember((dynamic)teacher);
+                            Console.WriteLine($"\n[СИСТЕМА]: Викладача {sName} додано.");
+                        }
+                    }
                     break;
                 case "31":
                     AddNewShape();
@@ -341,7 +419,6 @@ class Program
             Console.Write("Email: "); string email = Console.ReadLine();
             Console.Write("Прогрес (0-100): "); int progress = int.Parse(Console.ReadLine());
 
-            // 1. Створюємо об'єкт (ланцюжок Person -> Student)
             var s = new Student(
                 name,
                 DateTime.Now.AddYears(-18),
@@ -353,27 +430,27 @@ class Program
 
             s.CourseProgress = progress;
 
-            // 2. Додавання лабораторних
             Console.Write("Скільки лабораторних ви хочете додати (1-10)? ");
             if (int.TryParse(Console.ReadLine(), out int count) && count >= 1 && count <= 10)
             {
                 for (int i = 0; i < count; i++)
                 {
                     Console.Write($"Введіть бал за лабораторну №{i + 1} (0-100): ");
-                    if (byte.TryParse(Console.ReadLine(), out byte grade))
+                    // Змінено 'grade' на 'labGrade', щоб не було конфлікту
+                    if (byte.TryParse(Console.ReadLine(), out byte labGrade))
                     {
-                        s.AddLabGrade(i, grade);
+                        s.AddLabGrade(i, labGrade);
                     }
                 }
             }
 
-            // ПР №2/4: Додавання оцінок у список
-            s.Grades.Add(new GradePoint(8.5));
-            s.Grades.Add(new GradePoint(9.0));
+            // Тут твої gPoint1 та gPoint2 тепер працюють без помилок
+            var gPoint1 = new GradePoint(8.5);
+            s.Grades.Add(gPoint1);
 
-            // 3. ПРЯМА ПРИВ'ЯЗКА (Це те, чого бракувало!)
-            // Додаємо студента в обидва списки, щоб і стара логіка (п. 3), 
-            // і нова поліморфна логіка (п. 32-35) бачили одного й того самого студента.
+            var gPoint2 = new GradePoint(9.0);
+            s.Grades.Add(gPoint2);
+
             myGroup.Students.Add(s);
             myGroup.AddMember(s);
 
