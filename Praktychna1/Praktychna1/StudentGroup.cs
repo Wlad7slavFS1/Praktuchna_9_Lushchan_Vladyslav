@@ -22,6 +22,7 @@ namespace Praktychna1.Praktychna1
 
         // ПР №5: Колекція зберігає Person (які успадковують UniversityMember)
         private List<Person> _members = new List<Person>();
+        // 1. Оголошення подій за стандартом (sender, e)
         public event EventHandler<StudentEventArgs> StudentAdded;
         public event EventHandler<StudentEventArgs> StudentRemoved;
 
@@ -51,23 +52,18 @@ namespace Praktychna1.Praktychna1
             }
         }
 
-        // Залишаємо для сумісності зі старим кодом у Program.cs
+        // 2. Метод для додавання з викликом події
         public void AddStudent(Student student)
         {
+            if (student == null) return;
+
             Students.Add(student);
+
             // Виклик події (Invoke)
-            StudentAdded?.Invoke(this, new StudentEventArgs(student, "Нового студента успішно додано!"));
+            StudentAdded?.Invoke(this, new StudentEventArgs(student, "Студента успішно зараховано до групи."));
         }
 
-        public void RemoveStudent(string fullName)
-        {
-            var student = Students.FirstOrDefault(s => s.FullName == fullName);
-            if (student != null)
-            {
-                Students.Remove(student);
-                StudentRemoved?.Invoke(this, new StudentEventArgs(student, "Студента видалено з групи."));
-            }
-        }
+
 
         public List<Person> GetAllMembers() => _members;
 
