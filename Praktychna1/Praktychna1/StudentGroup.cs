@@ -423,5 +423,14 @@ namespace Praktychna1.Praktychna1
             // Використовуємо вбудований метод FindAll класу List<T>
             return Students.FindAll(match);
         }
+        public void ApplyToStudents(Action<Student> action)
+        {
+            if (action == null) return;
+
+            foreach (var student in Students)
+            {
+                action(student);
+            }
+        }
     }
 }
