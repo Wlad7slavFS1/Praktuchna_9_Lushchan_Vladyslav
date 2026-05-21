@@ -103,6 +103,7 @@ class Program
             menuBuilder.AppendLine("58. Сортування групи за ПІБ (Lambda)");
             menuBuilder.AppendLine("59. Тестування callback-механізмів");
             menuBuilder.AppendLine("60. Переглянути історію подій");
+            menuBuilder.AppendLine("61. Математичний калькулятор (Варіант 5 - Делегати)");
             menuBuilder.AppendLine("0.  Вийти");
             menuBuilder.Append("Виберіть дію: ");
 
@@ -472,6 +473,9 @@ class Program
                     Console.WriteLine("\n--- ІСТОРІЯ ПОДІЙ ГРУПИ ---");
                     if (eventLog.Count == 0) Console.WriteLine("Історія порожня. Спробуйте спочатку додати студента.");
                     else eventLog.ForEach(line => Console.WriteLine(line));
+                    break;
+                case "61":
+                    DynamicCalculator();
                     break;
                 case "0": break;
                 default: Console.WriteLine("Невірно."); break;
