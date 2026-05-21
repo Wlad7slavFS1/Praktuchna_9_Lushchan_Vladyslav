@@ -102,6 +102,7 @@ class Program
             menuBuilder.AppendLine("57. Продемонструвати багатовіщальність (Multicast Delegates)");
             menuBuilder.AppendLine("58. Сортування групи за ПІБ (Lambda)");
             menuBuilder.AppendLine("59. Тестування callback-механізмів");
+            menuBuilder.AppendLine("60. Переглянути історію подій");
             menuBuilder.AppendLine("0.  Вийти");
             menuBuilder.Append("Виберіть дію: ");
 
@@ -459,6 +460,19 @@ class Program
                     myGroup.Students.Sort((s1, s2) => s1.FullName.CompareTo(s2.FullName));
                     Console.WriteLine("Групу відсортовано за алфавітом через лямбда-вираз.");
                     break;
+                case "59":
+                    // Тестування callback: передаємо лямбду, яка виведе результат зеленим кольором
+                    RunWithCallback(msg => {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"[CALLBACK]: {msg}");
+                        Console.ResetColor();
+                    });
+                    break;
+                case "60":
+                    Console.WriteLine("\n--- ІСТОРІЯ ПОДІЙ ГРУПИ ---");
+                    if (eventLog.Count == 0) Console.WriteLine("Історія порожня. Спробуйте спочатку додати студента.");
+                    else eventLog.ForEach(line => Console.WriteLine(line));
+                    break;
                 case "0": break;
                 default: Console.WriteLine("Невірно."); break;
             }
@@ -472,6 +486,14 @@ class Program
         callback?.Invoke("Операцію успішно завершено!");
     }
 
+    static List<string> eventLog = new List<string>();
+
+    static void SubscribeToEvents()
+    {
+        // Підписуємося так, щоб кожна подія додавалася в лог
+        myGroup.StudentAdded += (s, e) => eventLog.Add($"[{DateTime.Now:HH:mm:ss}] Додано студента: {e.Message}");
+        Console.WriteLine("[СИСТЕМА]: Підписку на події активовано.");
+    }
 
     static void AddStudent()
     {
