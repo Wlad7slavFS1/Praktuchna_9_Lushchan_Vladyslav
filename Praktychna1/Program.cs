@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using static Praktychna1.Delegates;
 using static Praktychna1.Praktychna1.Student;
 using Complex = Praktychna1.Praktychna4.Complex;
 using Teacher = Praktychna1.Praktychna6.Teacher;
@@ -100,6 +101,7 @@ class Program
             menuBuilder.AppendLine("56. Згенерувати швидкий звіт (Func)");
             menuBuilder.AppendLine("57. Продемонструвати багатовіщальність (Multicast Delegates)");
             menuBuilder.AppendLine("58. Сортування групи за ПІБ (Lambda)");
+            menuBuilder.AppendLine("59. Тестування callback-механізмів");
             menuBuilder.AppendLine("0.  Вийти");
             menuBuilder.Append("Виберіть дію: ");
 
@@ -401,11 +403,75 @@ class Program
                 case "52":
                     new Praktychna1.Praktychna8.FileManager().TestExceptionHandling();
                     break;
+                case "53":
+                    // Підписка на події додавання/видалення
+                    myGroup.StudentAdded += (s, e) => {
+                        Console.WriteLine($"\n[EVENT]: {e.Message} -> {e.Student.FullName}");
+                        fm.LogAction($"System Event: {e.Message} ({e.Student.FullName})");
+                    };
+                    Console.WriteLine("Ви успішно підписалися на події групи.");
+                    break;
+
+                case "54":
+                    // Використання Predicate<Student>
+                    Console.WriteLine("\n--- ПОШУК ЧЕРЕЗ ЛЯМБДА-ВИРАЗ ---");
+                    Console.WriteLine("1. Відмінники (>= 90)");
+                    Console.WriteLine("2. Боржники (< 60)");
+                    string filterChoice = Console.ReadLine();
+
+                    var filtered = filterChoice == "1"
+                        ? myGroup.FindStudents(s => s.AverageGrade >= 90)
+                        : myGroup.FindStudents(s => s.AverageGrade < 60);
+
+                    Console.WriteLine($"Знайдено: {filtered.Count}");
+                    filtered.ForEach(s => Console.WriteLine(s.GetInfo()));
+                    break;
+
+                case "55":
+                    // Використання Action<Student>
+                    Console.Write("Введіть бонусний бал для всіх студентів: ");
+                    if (double.TryParse(Console.ReadLine(), out double bonus))
+                    {
+                        myGroup.ApplyToStudents((Praktychna1.Delegates.StudentOperation)(s => s.AverageGrade += bonus));
+                        Console.WriteLine("Бали оновлено для всієї групи через Action.");
+                    }
+                    break;
+
+                case "56":
+                    // Використання Func<StudentGroup, string>
+                    string fastReport = myGroup.GenerateReport(g =>
+                        $"ЗВІТ: {g.GroupName} | Студентів: {g.Students.Count} | Сер. бал групи: {g.Students.Average(s => s.AverageGrade):F2}");
+                    Console.WriteLine(fastReport);
+                    break;
+
+                case "57":
+                    // Демонстрація багатовіщальності (Multicast delegate)
+                    Console.WriteLine("Демонстрація багатовіщального делегата:");
+                    StudentOperation op = (s) => Console.WriteLine($"[Console]: Обробка {s.FullName}");
+                    op += (s) => fm.LogAction($"[Log]: Перевірка студента {s.FullName}");
+
+                    if (myGroup.Students.Any()) op(myGroup.Students[0]);
+                    else Console.WriteLine("Група порожня.");
+                    break;
+
+                case "58":
+                    // Сортування через Comparison делегат
+                    myGroup.Students.Sort((s1, s2) => s1.FullName.CompareTo(s2.FullName));
+                    Console.WriteLine("Групу відсортовано за алфавітом через лямбда-вираз.");
+                    break;
                 case "0": break;
                 default: Console.WriteLine("Невірно."); break;
             }
         }
     }
+
+    static void RunWithCallback(Action<string> callback)
+    {
+        Console.WriteLine("\n[ПРОЦЕС]: Виконання тривалої операції...");
+        Thread.Sleep(1000); // Імітація роботи
+        callback?.Invoke("Операцію успішно завершено!");
+    }
+
 
     static void AddStudent()
     {

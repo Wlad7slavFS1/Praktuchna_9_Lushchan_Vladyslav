@@ -1,7 +1,64 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\praktychna1\\studentgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\praktychna1\\studentgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\praktychna5\\teacher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\praktychna5\\teacher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\praktychna8\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\praktychna8\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\praktychna6\\developer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\praktychna6\\developer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\praktychna6\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\praktychna6\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\praktychna5\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\praktychna5\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\praktychna6\\idrawable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\praktychna6\\idrawable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\praktychna5\\universitymember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\praktychna5\\universitymember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\praktychna1\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\praktychna1\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\studenteventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\studenteventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\delegates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\delegates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\praktychna8\\invalidfileformatexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\praktychna8\\invalidfileformatexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|c:\\users\\user\\onedrive\\desktop\\\u043F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0442\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\praktychna1\\praktychna1\\praktychna8\\report8.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{27E32783-6231-40D7-AA60-7FF8078071FB}|Praktychna1\\Praktychna1.csproj|solutionrelative:praktychna1\\praktychna8\\report8.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +66,176 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Person.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna5\\Person.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Praktychna5\\Person.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna5\\Person.cs",
+              "RelativeToolTip": "Praktychna1\\Praktychna5\\Person.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T19:15:28.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna6\\Employee.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Praktychna6\\Employee.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna6\\Employee.cs",
+              "RelativeToolTip": "Praktychna1\\Praktychna6\\Employee.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T18:47:59.439Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Teacher.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna5\\Teacher.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Praktychna5\\Teacher.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna5\\Teacher.cs",
+              "RelativeToolTip": "Praktychna1\\Praktychna5\\Teacher.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA8wCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T18:47:37.944Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Developer.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna6\\Developer.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Praktychna6\\Developer.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna6\\Developer.cs",
+              "RelativeToolTip": "Praktychna1\\Praktychna6\\Developer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T18:43:43.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FileManager.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna8\\FileManager.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Praktychna8\\FileManager.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna8\\FileManager.cs",
+              "RelativeToolTip": "Praktychna1\\Praktychna8\\FileManager.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAowAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T16:11:00.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Program.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Program.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Program.cs",
+              "RelativeToolTip": "Praktychna1\\Program.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAQwGADAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T16:09:28.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudentGroup.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna1\\StudentGroup.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Praktychna1\\StudentGroup.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna1\\StudentGroup.cs",
+              "RelativeToolTip": "Praktychna1\\Praktychna1\\StudentGroup.cs",
+              "ViewState": "AgIAAIwBAAAAAAAAAAAwwJkBAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T15:19:26.86Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IDrawable.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna6\\IDrawable.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Praktychna6\\IDrawable.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna6\\IDrawable.cs",
+              "RelativeToolTip": "Praktychna1\\Praktychna6\\IDrawable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T18:56:37.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UniversityMember.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna5\\UniversityMember.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Praktychna5\\UniversityMember.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna5\\UniversityMember.cs",
+              "RelativeToolTip": "Praktychna1\\Praktychna5\\UniversityMember.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T18:44:39.605Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "InvalidFileFormatException.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna8\\InvalidFileFormatException.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Praktychna8\\InvalidFileFormatException.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna8\\InvalidFileFormatException.cs",
+              "RelativeToolTip": "Praktychna1\\Praktychna8\\InvalidFileFormatException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T16:41:42.557Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Student.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna1\\Student.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Praktychna1\\Student.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna1\\Student.cs",
+              "RelativeToolTip": "Praktychna1\\Praktychna1\\Student.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAswGIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T16:01:24.385Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "StudentEventArgs.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\StudentEventArgs.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\StudentEventArgs.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\StudentEventArgs.cs",
+              "RelativeToolTip": "Praktychna1\\StudentEventArgs.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T15:58:13.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Delegates.cs",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Delegates.cs",
+              "RelativeDocumentMoniker": "Praktychna1\\Delegates.cs",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Delegates.cs",
+              "RelativeToolTip": "Praktychna1\\Delegates.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-20T15:34:57.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "REPORT8.md",
+              "DocumentMoniker": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna8\\REPORT8.md",
+              "RelativeDocumentMoniker": "Praktychna1\\Praktychna8\\REPORT8.md",
+              "ToolTip": "C:\\Users\\user\\OneDrive\\Desktop\\\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u0438\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430\\\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0430 \u0422\u0440\u043E\u0446\u044C\u043A\u043E\u0433\u043E\\Praktychna1\\Praktychna1\\Praktychna8\\REPORT8.md",
+              "RelativeToolTip": "Praktychna1\\Praktychna8\\REPORT8.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-05-20T15:14:19.913Z"
             }
           ]
         },
