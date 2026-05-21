@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna9
 {
     public class Delegates
     {

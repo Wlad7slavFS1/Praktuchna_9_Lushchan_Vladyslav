@@ -11,11 +11,12 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
-using static Praktychna1.Delegates;
+using static Praktychna1.Praktychna9.Delegates;
 using static Praktychna1.Praktychna1.Student;
 using Complex = Praktychna1.Praktychna4.Complex;
 using Teacher = Praktychna1.Praktychna6.Teacher;
 using Vector = Praktychna1.Praktychna4.Vector;
+using Praktychna1.Praktychna9;
 
 class Program
 {
@@ -35,7 +36,7 @@ class Program
         while (true)
         {
             StringBuilder menuBuilder = new StringBuilder();
-            menuBuilder.AppendLine("\n--- СИСТЕМА УПРАВЛІННЯ ГРУПОЮ (ПР №6) ---");
+            menuBuilder.AppendLine("\n--- СИСТЕМА УПРАВЛІННЯ ГРУПОЮ (ПР №9) ---");
             menuBuilder.AppendLine("1.  Додати студента");
             menuBuilder.AppendLine("2.  Видалити студента");
             menuBuilder.AppendLine("3.  Вивести всіх студентів");
@@ -434,7 +435,7 @@ class Program
                     Console.Write("Введіть бонусний бал для всіх студентів: ");
                     if (double.TryParse(Console.ReadLine(), out double bonus))
                     {
-                        myGroup.ApplyToStudents((Praktychna1.Delegates.StudentOperation)(s => s.AverageGrade += bonus));
+                        myGroup.ApplyToStudents((Delegates.StudentOperation)(s => s.AverageGrade += bonus));
                         Console.WriteLine("Бали оновлено для всієї групи через Action.");
                     }
                     break;

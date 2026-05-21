@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Praktychna1
+namespace Praktychna1.Praktychna9
 {
     // Клас для передачі даних про студента в подіях
     public class StudentEventArgs : EventArgs

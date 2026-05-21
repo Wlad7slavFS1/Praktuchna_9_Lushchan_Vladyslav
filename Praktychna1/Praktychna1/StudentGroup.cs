@@ -3,6 +3,7 @@ using Praktychna1.Praktychna5;
 using Praktychna1.Praktychna6;
 using Praktychna1.Praktychna7;
 using Praktychna1.Praktychna8;
+using Praktychna1.Praktychna9;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using static Praktychna1.Delegates;
+using static Praktychna1.Praktychna9.Delegates;
 
 namespace Praktychna1.Praktychna1
 {
